@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@1,700&family=Pacifico&family=Poppins:ital,wght@0,400;1,200&display=swap');
+
+:root {
+  --text-color-dark: rgb(43, 40, 40);
+  --primary-color: #fff;
+  --cta-color: rgb(10, 69, 136);
+  --cta-color-hover: rgb(1, 50, 106);
+  --standard-margin: 1rem;
+
+  --border-radius: .5rem;
+
+  --max-width: 900px;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+::-webkit-scrollbar {display:none;}
+
+.standard-margin-y {
+  margin: var(--standard-margin) auto;
+}
+.standard-margin-x {
+  margin: auto var(--standard-margin);
+}
+
+.text-center {
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.btn {
+  font-size: 1rem;
+  color: var(--primary-color);
+  background-color: var(--cta-color);
+  outline: none;
+  border: 1px solid var(--cta-color);
+  transition: .1s ease-in-out;
+}
+
+.cta-btn {
+  margin: var(--standard-margin) auto 5rem ;
+  height: calc(var(--standard-margin) * 3);
+  width: 100px;
+  border-radius: var(--border-radius);
+}
+
+.btn:hover {
+  cursor: pointer;
+  border-color: var(--cta-color-hover);
+  background-color: var(--cta-color-hover);
+}
+.btn:active {
+  transform: scale(.98);
+}

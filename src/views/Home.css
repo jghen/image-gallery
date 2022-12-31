@@ -1,0 +1,6 @@
+.Home{
+  margin-top: calc(var(--standard-margin) * 5)
+}
+.home-h2 {
+  margin-top: calc(var(--standard-margin) * 10)
+}

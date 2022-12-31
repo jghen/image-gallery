@@ -1,0 +1,16 @@
+.Gallery {
+  margin-top: calc(var(--standard-margin) * 5)
+}
+.gallery-h2 {
+  margin-top: calc(var(--standard-margin) * 10)
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  place-items: center;
+  gap: calc(var(--standard-margin) * 2);
+  margin: var(--standard-margin) auto;
+  padding: 0 calc(var(--standard-margin) * 3);
+  max-width: var(--max-width);
+}

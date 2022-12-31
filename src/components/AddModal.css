@@ -1,0 +1,80 @@
+/* modal  */
+.add-modal {
+  opacity: 1;
+  position: fixed;
+  z-index: 100;
+  top: calc(var(--standard-margin) * 8);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  min-height: 300px;
+  max-height: 650px;
+  max-width: 650px;
+  background-color: var(--primary-color);
+  border-radius: calc(var(--border-radius) / 2);
+  border: 1px solid var(--cta-color);
+  color: var(--text-color-dark);
+  box-shadow: 1px 1px 4px -2px grey;
+  display: grid;
+  place-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.AddCard-input-img {
+  width: fit-content;
+  border-top-left-radius: calc(var(--border-radius) / 2);
+  border-top-right-radius: calc(var(--border-radius) / 2);
+  margin: 0 auto;
+  justify-self: center;
+}
+
+.upload-photo-icon {
+  width: var(--standard-margin);
+}
+.file-upload {
+  display: none;
+}
+
+.file-upload-label, .add-title, .add-text {
+  width: 250px;
+  margin: calc(var(--standard-margin) / 2) auto var(--standard-margin) auto;
+  border-radius: calc(var(--border-radius) / 2);
+  border: 1px solid var(--text-color-dark);
+}
+.add-title {
+  height: 30px;
+}
+
+.file-upload-label {
+  height: 100px;
+  opacity: .7;
+  display: inline-block;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: calc(var(--standard-margin) * 1.5) auto var(--standard-margin) auto;
+}
+
+.add-modal .close-btn {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  font-size: 3rem;
+  font-weight:lighter;
+  right: 0;
+  top: 0;
+  border-radius: calc(var(--border-radius) / 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-modal .close-btn span {
+  display: inline-block;
+  transform: rotate(-45deg);
+}

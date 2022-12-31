@@ -1,0 +1,6 @@
+.Blog {
+  margin-top: calc(var(--standard-margin) * 5)
+}
+.blog-h2 {
+  margin-top: calc(var(--standard-margin) * 10)
+}
