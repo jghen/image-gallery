@@ -1,6 +1,6 @@
 import "./AddModal.css";
 import { useState, useEffect } from "react";
-const AddModal = ({ isOpen, handleClose }) => {
+const AddModal = ({ isOpen, handleClose, newData }) => {
   const [open, setOpen] = useState(isOpen);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -10,14 +10,28 @@ const AddModal = ({ isOpen, handleClose }) => {
   }, [open]);
 
   const handleFileUpload = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      return setSelectedImage(e.target.files[0]);
+    const img = e.target.files;
+    if (img && img[0]) {
+
+      //set new state
+      return setSelectedImage(img[0]);
     }
     return;
   };
 
+  const addNewCard = (data) => {
+    return newData(data);
+  }
+
+  const submitUploadToDb = (data) => {
+    const {id, image, title, subtitle, text} = data;
+    //add to database
+    return;
+  };
+
   const handleModalClick = (e) => {
-    if (e.target.closest('button').id === 'modal-close-btn') {
+    const closeBtn = e.target.closest('button');
+    if (closeBtn && closeBtn.id === 'modal-close-btn') {
       return setOpen(false);
     }
 
@@ -25,18 +39,18 @@ const AddModal = ({ isOpen, handleClose }) => {
       // close modal
       setOpen(false);
       //submit data
-      const img = selectedImage;
+      const img = selectedImage; //this is the file object
       const title = document.querySelector("#add-title").value;
+      const sub = document.querySelector("#add-subtitle").value;
       const text = document.querySelector("#add-text").value;
+      const makeId = Math.floor(Math.random() * 10000);
 
-      submitUpload([img, title, text]);
+      const data = {id: makeId ,image:img, title: title, subtitle:sub, text: text};
+      const clientData = {id: makeId ,imageUrl: URL.createObjectURL(img), title: title, subtitle:sub, text: text};
+
+      submitUploadToDb(data);
+      addNewCard(clientData);
     }
-    return;
-  };
-
-  const submitUpload = (data) => {
-    // const [img, title, text] = data;
-    console.log("submitting upload data", data);
     return;
   };
 
@@ -79,15 +93,10 @@ const AddModal = ({ isOpen, handleClose }) => {
         id="add-title"
         name="add-title"
       />
+      <label htmlFor="add-subtitle">Undertittel:</label>
+      <textarea className="add-subtitle" name="add-subtitle" id="add-subtitle" cols="20" rows="3" maxLength="50" ></textarea>
       <label htmlFor="add-text">Tekst:</label>
-      <textarea
-        className="add-text"
-        name="add-text"
-        id="add-text"
-        cols="20"
-        rows="5"
-        maxLength="100"
-      ></textarea>
+      <textarea className="add-text" name="add-text" id="add-text" cols="20" rows="5" maxLength="100" ></textarea>
       <button id="submit-upload-btn" className="cta-btn btn">
         Legg til
       </button>

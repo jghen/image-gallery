@@ -3,7 +3,7 @@ import Container from "../hoc/Container.jsx";
 import { useNavigate } from "react-router-dom";
 
 
-const Card = ({ id, imageUrl, author }) => {
+const Card = ({ id, imageUrl, title, subtitle }) => {
 
   const navigate = useNavigate();
 
@@ -16,16 +16,27 @@ const Card = ({ id, imageUrl, author }) => {
 
   const handleCardClick = (e) => {
 
-    if (e.target.closest('button').id === 'card-close-btn') {
+    const card = e.target.closest('section');
+
+    const btn = e.target.closest('button');
+
+    console.log(card, btn, id);
+
+    if (!card && !btn) {
+      return;
+    }
+
+    if (btn && btn.id === 'card-close-btn') {
       // delete current card
-      const card = e.target.closest('section');
       console.log('deleting card with id', card.id);
       const cardTitle = document.querySelector(`#${card.id} h3`);
       
       const msg = confirm(`Vil du slette ${cardTitle.textContent}?`);
       return msg === true ? deleteCard(card) : null;
     } 
-    navigate(`/gallery/${id}`);
+
+
+    navigate(`/Gallery/${id}`);
   };
 
   return (
@@ -36,13 +47,13 @@ const Card = ({ id, imageUrl, author }) => {
       <Container>
         <div className="card-body">
           <img
-            src={`${imageUrl}`}
+            src={imageUrl}
             alt="some-image"
             loading="lazy"
             className="card-img"
           />
-          <h3 id="card-title">{author}</h3>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+          <h3 id="card-title">{title}</h3>
+          <p>{subtitle}</p>
         </div>
       </Container>
     </section>

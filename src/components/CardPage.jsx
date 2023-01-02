@@ -1,26 +1,23 @@
 import "./CardPage.css";
 import Container from "../hoc/Container.jsx";
 
-const CardPage = ({ imageUrl, author }) => {
+const CardPage = ({ id, imageUrl, title, subtitle, text }) => {
 
   return (
     <Container>
-      <section className="CardPage">
+      <section id={`CardPage-${id}`} className="CardPage">
         <Container>
           <div className="CardPage-body">
             <img
-              src={`${imageUrl}`}
-              alt="some-image"
+              src={imageUrl}
+              alt={`image-${id}`}
               loading="lazy"
               className="CardPage-img"
             />
             <div className="CardPage-text">
-              <h3>{author}</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti autem facere magnam accusantium quas perspiciatis!
-              </p>
+              <h3>{title}</h3>
+              <p>{subtitle}</p>
+              <p> {text} </p>
             </div>
           </div>
         </Container>

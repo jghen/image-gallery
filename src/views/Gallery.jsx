@@ -4,10 +4,11 @@ import Container from "../hoc/Container.jsx";
 import Card from "../components/Card.jsx";
 import CardPage from "../components/CardPage.jsx";
 import AddCard from "../components/AddCard.jsx";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
-const Gallery = () => {
-  const [data, setData] = useState(null);
+const Gallery = ({ addedData }) => {
+  // const [newData, setNewData] = useState(addedData);
+  const [data, setData] = useState(addedData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -22,7 +23,17 @@ const Gallery = () => {
         return response.json();
       })
       .then((actualData) => {
-        setData(actualData);
+        setData(
+          actualData.slice(0, 10).map(({ download_url, author }) => {
+            return {
+              id: Math.floor(Math.random() * 10000),
+              imageUrl: download_url,
+              title: author,
+              subtitle: "random subtitle",
+              text: "this is the long text",
+            };
+          })
+        );
         setError(null);
       })
       .catch((err) => {
@@ -34,44 +45,61 @@ const Gallery = () => {
       });
   }, []);
 
+  const handleAddedData = (theNewData) => {
+    // setNewData(theNewdata);
+    let newData = [...data, theNewData];
+    console.log(newData);
+    setData(newData);
+  };
+
   return (
     <Container>
       <Routes>
-        <Route path="/" element={
-          <div id="gallery" className="Gallery">
-            <h2 className="gallery-h2 text-center"></h2>
-            {loading && <div>A moment please...</div>}
-            {error && (
-              <div>{`There is a problem fetching the post data - ${error}`}</div>
-            )}
-            <section className="gallery-grid">
-              {data &&
-                data .slice(0, 10) .map(({ id, download_url, author }) => (
-                  <Card
-                    key={`Card-${id}`}
-                    imageUrl={download_url}
-                    author={author}
-                    id={id}
-                  />
-                ))}
-                <AddCard/>
-            </section>
-          </div>
-        }/>
-        {data && data .slice(0, 10) .map(({ id, download_url, author }) => (
-          <Route
-            key={`Route-${id}`}
-            path={`:${id}`}
-            element={
-              <CardPage
-                key={`CardPage-${id}`}
-                imageUrl={download_url}
-                author={author}
-                id={id}
-              />
-            }
-          />
-        ))}
+
+        <Route
+          path="/"
+          element={
+            <div id="gallery" className="Gallery">
+              <h2 className="gallery-h2 text-center"></h2>
+              {loading && <div>A moment please...</div>}
+              {error && (
+                <div>{`There is a problem fetching the post data - ${error}`}</div>
+              )}
+              <section className="gallery-grid">
+                {data &&
+                  data.map(({ id, imageUrl, title, subtitle, text }, i) => (
+                    <Card
+                      key={`Card-${i}`}
+                      imageUrl={imageUrl}
+                      title={title}
+                      id={id}
+                      subtitle={subtitle}
+                    />
+                  ))}
+                <AddCard newCardData={handleAddedData} />
+              </section>
+            </div>
+          }
+        />
+
+        {data &&
+          data.map(({ id, imageUrl, title, subtitle, text }, i) => (
+            <Route
+              key={`Route-CardPage-${i}`}
+              path={`${id}`}
+              element={
+                <CardPage
+                  key={`CardPage-${id}`}
+                  imageUrl={imageUrl}
+                  title={title}
+                  id={id}
+                  subtitle={subtitle}
+                  text={text}
+                />
+              }
+            />
+          ))}
+          
       </Routes>
     </Container>
   );

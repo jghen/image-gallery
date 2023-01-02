@@ -49,7 +49,7 @@ a:hover {
 }
 
 .cta-btn {
-  margin: var(--standard-margin) auto 5rem ;
+  margin: var(--standard-margin) auto calc(var(--standard-margin) * 2) auto;
   height: calc(var(--standard-margin) * 3);
   width: 100px;
   border-radius: var(--border-radius);
