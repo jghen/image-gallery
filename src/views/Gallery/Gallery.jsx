@@ -1,14 +1,18 @@
 import "./Gallery.css";
 import { useState, useEffect } from "react";
-import Container from "../hoc/Container.jsx";
-import Card from "../components/Card.jsx";
-import CardPage from "../components/CardPage.jsx";
-import AddCard from "../components/AddCard.jsx";
-import { Routes, Route, Link } from "react-router-dom";
+import Container from "../../hoc/Container.jsx";
+import Card from "../../components/Card.jsx";
+import CardPage from "../../components/CardPage.jsx";
+import AddCard from "../../components/AddCard.jsx";
+import { Routes, Route } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { setAllImages, selectGallery } from "./gallerySlice.jsx";
 
-const Gallery = ({ addedData }) => {
-  // const [newData, setNewData] = useState(addedData);
-  const [data, setData] = useState(addedData);
+const Gallery = () => {
+  //state
+  const galleryData = useSelector(selectGallery);
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -23,39 +27,33 @@ const Gallery = ({ addedData }) => {
         return response.json();
       })
       .then((actualData) => {
-        setData(
-          actualData.slice(0, 10).map(({ download_url, author }) => {
-            return {
-              id: Math.floor(Math.random() * 10000),
-              imageUrl: download_url,
-              title: author,
-              subtitle: "random subtitle",
-              text: "this is the long text",
-            };
-          })
+        dispatch(
+          setAllImages(
+            actualData.slice(0, 10).map(({ download_url, author }) => {
+              return {
+                id: Math.floor(Math.random() * 10000),
+                imageUrl: download_url,
+                title: author,
+                subtitle: "random subtitle",
+                text: "this is the long text",
+              };
+            })
+          )
         );
         setError(null);
       })
       .catch((err) => {
         setError(err.message);
-        setData(null);
+        dispatch(setAllImages(null));
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
 
-  const handleAddedData = (theNewData) => {
-    // setNewData(theNewdata);
-    let newData = [...data, theNewData];
-    console.log(newData);
-    setData(newData);
-  };
-
   return (
     <Container>
       <Routes>
-
         <Route
           path="/"
           element={
@@ -66,8 +64,8 @@ const Gallery = ({ addedData }) => {
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
               )}
               <section className="gallery-grid">
-                {data &&
-                  data.map(({ id, imageUrl, title, subtitle, text }, i) => (
+                {galleryData &&
+                  galleryData.map(({ id, imageUrl, title, subtitle }, i) => (
                     <Card
                       key={`Card-${i}`}
                       imageUrl={imageUrl}
@@ -76,14 +74,14 @@ const Gallery = ({ addedData }) => {
                       subtitle={subtitle}
                     />
                   ))}
-                <AddCard newCardData={handleAddedData} />
+                <AddCard />
               </section>
             </div>
           }
         />
 
-        {data &&
-          data.map(({ id, imageUrl, title, subtitle, text }, i) => (
+        {galleryData &&
+          galleryData.map(({ id, imageUrl, title, subtitle, text }, i) => (
             <Route
               key={`Route-CardPage-${i}`}
               path={`${id}`}
@@ -99,7 +97,6 @@ const Gallery = ({ addedData }) => {
               }
             />
           ))}
-          
       </Routes>
     </Container>
   );

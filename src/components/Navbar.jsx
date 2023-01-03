@@ -1,6 +1,5 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import Container from "../hoc/Container";
 
 const Navbar = () => {
   let activeStyle = {

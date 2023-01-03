@@ -4,7 +4,7 @@ import AddModal from "./AddModal.jsx";
 import { useState } from "react";
 import "material-symbols";
 
-const AddCard = ({newCardData}) => {
+const AddCard = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAddCardClick = () => {
@@ -15,10 +15,6 @@ const AddCard = ({newCardData}) => {
     setModalOpen(bool);
   }
 
-  const addNewData = (data) => {
-    newCardData(data);
-  }
-
   return (
     <section className="AddCard" id={`AddCard`} onClick={handleAddCardClick}>
       <Container>
@@ -27,7 +23,7 @@ const AddCard = ({newCardData}) => {
           <p>Legg til nytt innhold</p>
         </div>
       </Container>
-      {modalOpen && <AddModal isOpen={modalOpen} handleClose={handleClose} newData = {addNewData}/>}
+      {modalOpen && <AddModal isOpen={modalOpen} handleClose={handleClose}/>}
     </section>
   );
 };

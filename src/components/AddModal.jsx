@@ -1,6 +1,14 @@
 import "./AddModal.css";
 import { useState, useEffect } from "react";
-const AddModal = ({ isOpen, handleClose, newData }) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { addImage, deleteImage, setAllImages, selectGallery  } from "../views/Gallery/gallerySlice.jsx";
+
+
+const AddModal = ({ isOpen, handleClose }) => {
+
+  const galleryData = useSelector(selectGallery);
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(isOpen);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -19,8 +27,8 @@ const AddModal = ({ isOpen, handleClose, newData }) => {
     return;
   };
 
-  const addNewCard = (data) => {
-    return newData(data);
+  const addNewCard = (newImageData) => {
+    return dispatch(addImage(newImageData));
   }
 
   const submitUploadToDb = (data) => {
