@@ -4,42 +4,37 @@ import Container from "../../hoc/Container.jsx";
 import Card from "../../components/Card.jsx";
 import CardPage from "../../components/CardPage.jsx";
 import AddCard from "../../components/AddCard.jsx";
-import { Routes, Route } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { setAllImages, selectGallery } from "./gallerySlice.jsx";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setAllImages,
+  addImage,
+  deleteImage,
+  selectGallery,
+} from "./gallerySlice.jsx";
+import { storageRead, storageSave } from "../../storage/storage";
+import { STORAGE_KEY_GALLERY, STORAGE_KEY_USER } from "../../const/storageKeys";
+import { fetchInitialGallery } from "../../api/galleryFetch";
 
 const Gallery = () => {
-  //state
+  //state global
   const galleryData = useSelector(selectGallery);
   const dispatch = useDispatch();
 
+  // state local
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch(`https://picsum.photos/v2/list`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        return response.json();
-      })
-      .then((actualData) => {
-        dispatch(
-          setAllImages(
-            actualData.slice(0, 10).map(({ download_url, author }) => {
-              return {
-                id: Math.floor(Math.random() * 10000),
-                imageUrl: download_url,
-                title: author,
-                subtitle: "random subtitle",
-                text: "this is the long text",
-              };
-            })
-          )
-        );
+  // hooks
+  const navigate = useNavigate();
+
+  // side effects
+  const fetchInitialData = () => {
+    fetchInitialGallery()
+      .then((initialData) => {
+        console.log('fetching initial')
+        dispatch(setAllImages(initialData));
+        storageSave(STORAGE_KEY_GALLERY, initialData);
         setError(null);
       })
       .catch((err) => {
@@ -49,7 +44,49 @@ const Gallery = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    if (galleryData.length === 0) return fetchInitialData();
+    
+    setLoading(false);
+    const galleryStorage = storageRead(STORAGE_KEY_GALLERY);
+
+    console.log('state and storage',galleryData.length, galleryStorage.length);
+  }, [galleryData.length]);
+
+  //events
+  const deleteCard = (cardId) => {
+
+    // delete from state
+    dispatch(deleteImage(cardId));
+
+    //update storage
+    const newGalleryData = galleryData.filter(img => img.id !== cardId);
+    storageSave(STORAGE_KEY_GALLERY, newGalleryData);
+  };
+
+  const onCardClick = (e) => {
+    const card = e.target.closest("section");
+    const btn = e.target.closest("button");
+
+    if (!card && !btn) return;
+
+    const cardId = parseInt(card.id.slice(5, card.id.length)); //cut out "card-"
+
+    // if btn clicked - remove card
+    if (btn && btn.id === "card-close-btn") {
+
+      console.log("deleting card with id", cardId);
+      const cardTitle = document.querySelector(`#${card.id} h3`);
+
+      const msg = confirm(`Vil du slette ${cardTitle.textContent}?`);
+      return msg === true ? deleteCard(cardId) : null;
+    }
+
+    // otherwise go to the card page
+    return navigate(`/Gallery/${cardId}`);
+  };
 
   return (
     <Container>
@@ -72,6 +109,7 @@ const Gallery = () => {
                       title={title}
                       id={id}
                       subtitle={subtitle}
+                      onCardClick={onCardClick}
                     />
                   ))}
                 <AddCard />

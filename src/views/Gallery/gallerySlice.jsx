@@ -11,11 +11,11 @@ export const gallerySlice = createSlice({
     },
     deleteImage: (state, action) => {
       state.value = state.value.filter(
-        (image) => image.id !== action.payload.id
+        (image) => image.id !== action.payload
       );
     },
     setAllImages: (state, action) => {
-      state.value = [...action.payload];
+      state.value = action.payload;
     },
   },
 });

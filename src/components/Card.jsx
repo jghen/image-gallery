@@ -1,43 +1,12 @@
 import "./Card.css";
 import Container from "../hoc/Container.jsx";
-import { useNavigate } from "react-router-dom";
 
 
-const Card = ({ id, imageUrl, title, subtitle }) => {
-
-  const navigate = useNavigate();
-
-  const deleteCard = (card) => {
-    //delete from database:
-
-    //delete from dom:
-    return card.remove();
-  }
+const Card = ({ id, imageUrl, title, subtitle, onCardClick }) => {
 
   const handleCardClick = (e) => {
-
-    const card = e.target.closest('section');
-
-    const btn = e.target.closest('button');
-
-    console.log(card, btn, id);
-
-    if (!card && !btn) {
-      return;
-    }
-
-    if (btn && btn.id === 'card-close-btn') {
-      // delete current card
-      console.log('deleting card with id', card.id);
-      const cardTitle = document.querySelector(`#${card.id} h3`);
-      
-      const msg = confirm(`Vil du slette ${cardTitle.textContent}?`);
-      return msg === true ? deleteCard(card) : null;
-    } 
-
-
-    navigate(`/Gallery/${id}`);
-  };
+    onCardClick(e);
+  }
 
   return (
     <section className="card" id={`card-${id}`} onClick={handleCardClick}>
