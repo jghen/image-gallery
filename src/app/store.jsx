@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import galleryReducer from '../views/Gallery/gallerySlice.jsx'
+import imagesReducer from '../components/Images/imagesSlice.jsx'
 
 export default configureStore({
   reducer: {
-    gallery: galleryReducer,
+    images: imagesReducer,
   },
 });

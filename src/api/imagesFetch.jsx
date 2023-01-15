@@ -1,6 +1,6 @@
 import { createHeaders } from "./index";
 
-export const fetchInitialGallery = async () => {
+export const fetchInitialImages = async () => {
   try {
     const options = {
       method: "GET",

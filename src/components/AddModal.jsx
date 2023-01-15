@@ -1,14 +1,14 @@
 import "./AddModal.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { addImage, selectGallery  } from "../views/Gallery/gallerySlice.jsx";
+import { addImage, selectImages  } from "./Images/imagesSlice.jsx";
 import { storageSave } from "../storage/storage";
-import { STORAGE_KEY_GALLERY } from "../const/storageKeys";
+import { STORAGE_KEY_IMAGES } from "../const/storageKeys";
 
 
 const AddModal = ({ isOpen, handleClose }) => {
 
-  const galleryData = useSelector(selectGallery);
+  const imagesData = useSelector(selectImages);
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(isOpen);
@@ -30,7 +30,7 @@ const AddModal = ({ isOpen, handleClose }) => {
   };
 
   const addNewCard = (newImageData) => {
-    storageSave(STORAGE_KEY_GALLERY, [...galleryData, newImageData]);
+    storageSave(STORAGE_KEY_IMAGES, [...imagesData, newImageData]);
     return dispatch(addImage(newImageData));
   }
 

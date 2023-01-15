@@ -40,7 +40,7 @@
 
 .card-img {
   height: 166px;
-  max-width: 250px;
+  width: 250px;
   border-top-left-radius: calc(var(--border-radius) / 2);
   border-top-right-radius: calc(var(--border-radius) / 2);
   margin: 0 0 var(--standard-margin) 0;
