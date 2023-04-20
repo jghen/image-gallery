@@ -84,7 +84,6 @@ const Images = () => {
 
   return (
     <>
-      
       <Container>
         <Routes>
           <Route
@@ -105,6 +104,7 @@ const Images = () => {
                         id={id}
                         subtitle={subtitle}
                         onCardClick={onCardClick}
+                        index={i}
                       />
                     ))}
                   <AddCard />

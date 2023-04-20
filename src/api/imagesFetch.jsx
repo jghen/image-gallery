@@ -11,12 +11,12 @@ export const fetchInitialImages = async () => {
     const response = await fetch(apiUrl, options);
 
     if (!response.ok) {
-      throw new Error("Could not update the translations", response.status);
+      throw new Error("Could not fetch", response.status);
     }
 
     const result = await response.json();
 
-    const sliced = result.slice(0, 10).map(({ download_url, author }) => {
+    const sliced = await result.slice(0, 10).map(({ download_url, author }) => {
       return {
         id: Math.floor(Math.random() * 10000),
         imageUrl: download_url,
@@ -26,7 +26,7 @@ export const fetchInitialImages = async () => {
       };
     });
     
-    return sliced;
+    return await sliced;
 
   } catch (error) {
     return [error.message, null];
