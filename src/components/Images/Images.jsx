@@ -7,6 +7,7 @@ import AddCard from "../AddCard.jsx";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
+import { selectIsSignedIn } from "../../app/isSignedInSlice";
 import { storageRead, storageSave } from "../../storage/storage.jsx";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys.jsx";
 import { fetchInitialImages } from "../../api/imagesFetch.jsx";
@@ -14,6 +15,7 @@ import { fetchInitialImages } from "../../api/imagesFetch.jsx";
 const Images = () => {
   //state global
   const images = useSelector(selectImages);
+  const loggedIn = useSelector(selectIsSignedIn);
   const dispatch = useDispatch();
 
   // state local
@@ -67,7 +69,7 @@ const Images = () => {
 
     if (!card && !btn) return;
 
-    const cardId = parseInt(card.id.slice(5, card.id.length)); //cut out "card-"
+    const cardId = card.id.slice(5, card.id.length); //cut out "card-"
 
     // if btn clicked - remove card
     if (btn && btn.id === "card-close-btn") {
@@ -107,7 +109,7 @@ const Images = () => {
                         index={i}
                       />
                     ))}
-                  <AddCard />
+                  {loggedIn === true && <AddCard />}
                 </section>
               </div>
             }

@@ -1,4 +1,5 @@
 import { createHeaders } from "./index";
+import { API_BASE_URL } from "../const/urls";
 
 export const fetchInitialImages = async () => {
   try {
@@ -6,9 +7,9 @@ export const fetchInitialImages = async () => {
       method: "GET",
       headers: createHeaders(),
     };
-    const apiUrl = 'https://picsum.photos/v2/list';
+    const url = API_BASE_URL + '/images';
 
-    const response = await fetch(apiUrl, options);
+    const response = await fetch(url, options);
 
     if (!response.ok) {
       throw new Error("Could not fetch", response.status);
@@ -16,17 +17,18 @@ export const fetchInitialImages = async () => {
 
     const result = await response.json();
 
-    const sliced = await result.slice(0, 10).map(({ download_url, author }) => {
+    console.log(result);
+    return result.data.result.imageData.map((img, i) => {
       return {
-        id: Math.floor(Math.random() * 10000),
-        imageUrl: download_url,
-        title: author,
-        subtitle: "random subtitle",
-        text: "this is the long text",
+        id: img.id,
+        imageUrl: decodeURI(result.data.result.encodedUrls[i]),
+        title: img.title,
+        subtitle: img.subtitle,
+        text: img.description,
       };
     });
     
-    return await sliced;
+
 
   } catch (error) {
     return [error.message, null];

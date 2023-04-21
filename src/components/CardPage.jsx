@@ -4,7 +4,7 @@ import Container from "../hoc/Container.jsx";
 const CardPage = ({ id, imageUrl, title, subtitle, text }) => {
 
   return (
-    <Container>
+
       <section id={`CardPage-${id}`} className="CardPage">
         <Container>
           <div className="CardPage-body">
@@ -22,7 +22,7 @@ const CardPage = ({ id, imageUrl, title, subtitle, text }) => {
           </div>
         </Container>
       </section>
-    </Container>
+
   );
 };
 

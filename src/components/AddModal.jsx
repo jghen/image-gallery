@@ -38,7 +38,6 @@ const AddModal = ({ isOpen, handleClose }) => {
     const { id, image, title, subtitle, text } = data;
     const formData = new FormData();
     formData.append("image", image);
-    formData.append("id", id);
     formData.append("title", title);
     formData.append("subtitle", subtitle);
     formData.append("text", text);
@@ -46,12 +45,17 @@ const AddModal = ({ isOpen, handleClose }) => {
     const url = `http://localhost:3000/images/${id}`;
     const options = {
       method: "POST",
+      credentials: 'include',
+      // headers: {
+      //   "Content-Type": "multipart/form-data",
+      //  },
       body: formData
     };
 
     let s3URL;
     try {
-      s3URL = await fetch(url, options);
+      const response = await fetch(url, options);
+      s3URL = await response.json();
     } catch (error) {
       console.log(error);
     }

@@ -3,9 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: calc(100% - var(--standard-margin) * 2);
+  text-align: left;
+  width: calc(100% - var(--standard-margin) * 1);
   max-width: var(--max-width);
-  margin: calc(var(--standard-margin) * 10) auto;
+  margin: calc(var(--standard-margin) * 12) auto;
 }
 /* .CardPage:hover {
   box-shadow: 5px 5px 20px -10px grey;
@@ -20,17 +21,20 @@
 }
 
 .CardPage-img {
-  width: clamp(90%, 40%, 40%);
+  width: clamp(100%, 40%, 40%);
+  min-width: 250px;
+  max-width: var(--max-width);
   border-radius: var(--border-radius);
-  margin: auto calc(var(--standard-margin) + 2vmin ) auto var(--standard-margin);
+  margin: auto calc(var(--standard-margin)) auto var(--standard-margin);
 }
 
 .CardPage h3 {
-  text-align: center;
+  text-align: left;
 }
 
 .CardPage-text {
-  width: 60%;
+  width: clamp(95%, 60%, 60%);
+  padding: var(--standard-margin);
 }
 
 

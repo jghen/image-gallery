@@ -1,12 +1,15 @@
 import "./Login.css";
 import { API_BASE_URL } from "../const/urls";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsSignedIn, selectIsSignedIn } from "../app/isSignedInSlice";
 
 
 
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -34,9 +37,16 @@ const Login = () => {
       console.log(error.message)
       return error.message;
     }
-    if (!data.status == "success") return;
+
     
-    return navigate('/');
+    if (data.status !== "success") {
+      return dispatch(setIsSignedIn(false))
+    } 
+
+    //set state: signed in.
+    dispatch(setIsSignedIn(true));
+    //go back to prev page.
+    return navigate(-1, {replace: true}); 
   };
 
   return (
