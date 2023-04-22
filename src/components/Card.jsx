@@ -1,6 +1,5 @@
 import "./Card.css";
 import Container from "../hoc/Container.jsx";
-import Cookies from 'js-cookie';
 import { useSelector } from "react-redux";
 import { selectIsSignedIn } from "../app/authSlice";
 
@@ -13,8 +12,6 @@ const Card = ({ id, imageUrl, title, subtitle, onCardClick, index }) => {
     onCardClick(e);
   };
 
-
-  console.log(loggedIn)
 
   return (
     <section className="card" id={`card-${id}`} onClick={handleCardClick}>
