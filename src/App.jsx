@@ -8,8 +8,14 @@ import NotFound from "./views/NotFound/NotFound.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector} from "react-redux";
+import { selectIsSignedIn } from "../app/isSignedInSlice";
+
+
 
 function App() {
+  const loggedIn = useSelector(selectIsSignedIn);
+
   return (
     <BrowserRouter>
       <Navbar />

@@ -2,7 +2,7 @@ import "./Card.css";
 import Container from "../hoc/Container.jsx";
 import Cookies from 'js-cookie';
 import { useSelector } from "react-redux";
-import { selectIsSignedIn } from "../app/isSignedInSlice";
+import { selectIsSignedIn } from "../app/authSlice";
 
 const Card = ({ id, imageUrl, title, subtitle, onCardClick, index }) => {
 

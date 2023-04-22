@@ -7,7 +7,7 @@ import AddCard from "../AddCard.jsx";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
-import { selectIsSignedIn } from "../../app/isSignedInSlice";
+import { selectIsSignedIn } from "../../app/authSlice";
 import { storageRead, storageSave } from "../../storage/storage.jsx";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys.jsx";
 import { fetchInitialImages } from "../../api/imagesFetch.jsx";

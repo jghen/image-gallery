@@ -2,23 +2,21 @@ import "./Login.css";
 import { API_BASE_URL } from "../const/urls";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsSignedIn, selectIsSignedIn } from "../app/isSignedInSlice";
-
-
-
+import { login, logout, selectIsSignedIn } from "../app/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const signedIn = useSelector(selectIsSignedIn);
 
   const loginUser = async (e) => {
     e.preventDefault();
-  
+
     const { username, password } = document.forms[0];
     const url = API_BASE_URL + "/login";
     const options = {
       method: "POST",
-      credentials: 'include',
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,40 +25,52 @@ const Login = () => {
         password: password.value,
       }),
     };
-    
+
     let data;
     try {
       const response = await fetch(url, options);
       data = await response.json();
-      console.log('data:',data);
+      console.log("data:", data);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
       return error.message;
     }
 
-    
     if (data.status !== "success") {
-      return dispatch(setIsSignedIn(false))
-    } 
+      return dispatch(logout());
+    }
 
     //set state: signed in.
-    dispatch(setIsSignedIn(true));
+    dispatch(login());
     //go back to prev page.
-    return navigate(-1, {replace: true}); 
+    return navigate(-1, { replace: true });
   };
 
   return (
-    <form action="/login" method="post" onSubmit={loginUser}>
-      <section className="Login">
-        <label htmlFor="username">Brukernavn:</label>
-        <input type="text" name="username" id="username" />
-        <label htmlFor="password">Passord:</label>
-        <input type="password" name="password" id="password" />
-        <button className="btn cta-btn" type="submit">
-          Logg inn
-        </button>
-      </section>
-    </form>
+    <>
+      {signedIn === false 
+      ? (
+        <form action="/login" method="post" onSubmit={loginUser}>
+          <section className="Login">
+            <label htmlFor="username">Brukernavn:</label>
+            <input type="text" name="username" id="username" />
+            <label htmlFor="password">Passord:</label>
+            <input type="password" name="password" id="password" />
+            <button className="btn cta-btn" type="submit">
+              Logg inn
+            </button>
+          </section>
+        </form>
+      ) 
+      : (
+        <section className="Login">
+            <p>Du er allerede logget inn :)</p>
+            <button className="btn cta-btn" onClick={()=>navigate(-1)}>
+              Tilbake
+            </button>
+          </section>
+      )}
+    </>
   );
 };
 
