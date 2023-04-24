@@ -1,10 +1,13 @@
 import "./Blog.css";
+import ContentMarginTop from '../../hoc/ContentMarginTop';
 
 const Blog = () => {
   return (
-    <section className="Blog">
-      <h2 className="blog-h2 text-center">Blogg</h2>
-    </section>
+    <ContentMarginTop>
+      <section className="Blog">
+        <h2 className="blog-h2 text-center">Blogg</h2>
+      </section>
+    </ContentMarginTop>
   );
 };
 

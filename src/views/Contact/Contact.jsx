@@ -1,10 +1,13 @@
 import "./Contact.css";
+import ContentMarginTop from '../../hoc/ContentMarginTop';
 
 const Contact = () => {
   return (
-    <section className="Contact">
-      <h2 className="contact-h2 text-center">Kontakt</h2>
-    </section>
+    <ContentMarginTop>
+      <section className="Contact">
+        <h2 className="contact-h2 text-center">Kontakt</h2>
+      </section>
+    </ContentMarginTop>
   );
 };
 

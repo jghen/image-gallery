@@ -1,6 +1,6 @@
 import "./AddCard.css";
-import Container from "../hoc/Container.jsx";
-import AddModal from "./AddModal.jsx";
+import Container from "../../hoc/Container.jsx";
+import AddModal from "../AddModal/AddModal.jsx";
 import { useState } from "react";
 import "material-symbols";
 

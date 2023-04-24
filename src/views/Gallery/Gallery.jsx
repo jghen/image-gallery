@@ -1,9 +1,11 @@
+import './Gallery.css';
 import Images from "../../components/Images/Images.jsx";
 import Textiles from "../Textiles/Textiles.jsx";
 import Other from "../Other/Other.jsx";
-import SubNavbar from "../../components/SubNavbar.jsx";
+import SubNavbar from "../../components/SubNavbar/SubNavbar.jsx";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import ContentMarginTop from '../../hoc/ContentMarginTop';
 
 
 
@@ -16,6 +18,7 @@ const Gallery = () => {
   }, [])
 
   return (
+    <ContentMarginTop>
     <section className="Gallery">
       <SubNavbar />
       <Routes>
@@ -25,6 +28,7 @@ const Gallery = () => {
         <Route path="/Other" element={<Other />} />
       </Routes>
     </section>
+    </ContentMarginTop>
   );
 };
 

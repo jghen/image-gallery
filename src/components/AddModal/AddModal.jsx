@@ -1,9 +1,9 @@
 import "./AddModal.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addImage, selectImages } from "./Images/imagesSlice.jsx";
-import { storageSave } from "../storage/storage";
-import { STORAGE_KEY_IMAGES } from "../const/storageKeys";
+import { addImage, selectImages } from "../Images/imagesSlice.jsx";
+import { storageSave } from "../../storage/storage";
+import { STORAGE_KEY_IMAGES } from "../../const/storageKeys";
 import { v4 as uuidv4 } from 'uuid';
 
 

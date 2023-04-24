@@ -1,7 +1,7 @@
 import "./Card.css";
-import Container from "../hoc/Container.jsx";
+import Container from "../../hoc/Container.jsx";
 import { useSelector } from "react-redux";
-import { selectIsSignedIn } from "../app/authSlice";
+import { selectIsSignedIn } from "../../app/authSlice";
 
 const Card = ({ id, imageUrl, title, subtitle, onCardClick, index }) => {
 

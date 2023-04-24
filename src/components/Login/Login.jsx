@@ -1,8 +1,8 @@
 import "./Login.css";
-import { API_BASE_URL } from "../const/urls";
+import { API_BASE_URL } from "../../const/urls";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout, selectIsSignedIn } from "../app/authSlice";
+import { login, logout, selectIsSignedIn } from "../../app/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();

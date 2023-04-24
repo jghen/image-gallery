@@ -1,0 +1,30 @@
+.BackButton-Wrapper {
+  width: 95%;
+  max-width: calc(490px);
+  margin: calc(var(--standard-margin)* .5) calc(var(--standard-margin)* 1);
+}
+
+.BackButton {
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0 0.4rem 0 0;
+  font-size: 1.05em;
+}
+
+.BackButton:hover {
+  color: var(--text-color-dark);
+  border-bottom: 1px solid var(--text-color-dark);
+}
+
+
+@media screen and (min-width: 44em) {
+  .BackButton-Wrapper {
+    width: 100%;
+    grid-column: span 3;
+   
+    margin: calc(var(--standard-margin)* .5);
+  } 
+  
+}

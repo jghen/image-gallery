@@ -1,15 +1,16 @@
-.Images {
-  margin-top: calc(var(--standard-margin) * 13)
-}
+/* .Images {
+  margin-top: calc(var(--standard-margin) * 13);
+} */
 
 .Images-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   place-items: center;
   gap: calc(var(--standard-margin) * 2);
   margin: var(--standard-margin) auto;
   padding: calc(var(--standard-margin) * 1);
   max-width: var(--max-width);
+  background-color: var(--);
 }
 
 @media screen and (min-width: 44em) {

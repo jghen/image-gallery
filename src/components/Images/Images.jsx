@@ -1,9 +1,9 @@
 import "./Images.css";
 import { useState, useEffect } from "react";
 import Container from "../../hoc/Container.jsx";
-import Card from "../Card.jsx";
-import CardPage from "../CardPage.jsx";
-import AddCard from "../AddCard.jsx";
+import Card from "../Card/Card.jsx";
+import CardPage from "../CardPage/CardPage.jsx";
+import AddCard from "../AddCard/AddCard.jsx";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
