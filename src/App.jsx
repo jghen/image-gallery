@@ -5,7 +5,7 @@ import Blog from './views/Blog/Blog.jsx';
 import Gallery from "./views/Gallery/Gallery.jsx";
 import Contact from "./views/Contact/Contact.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
-// import Footer from "./components/Footer/Footer.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 import Login from "./components/Login/Login.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -25,7 +25,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </BrowserRouter>
   );
 }

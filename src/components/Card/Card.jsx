@@ -1,7 +1,7 @@
 import "./Card.css";
 import Container from "../../hoc/Container.jsx";
 import { useSelector } from "react-redux";
-import { selectIsSignedIn } from "../../app/authSlice";
+import { selectIsSignedIn } from "../../state/authSlice";
 
 const Card = ({ id, imageUrl, title, subtitle, onCardClick, index }) => {
 
@@ -11,6 +11,7 @@ const Card = ({ id, imageUrl, title, subtitle, onCardClick, index }) => {
   const handleCardClick = (e) => {
     onCardClick(e);
   };
+  console.log('loggedIn', loggedIn)
 
 
   return (
@@ -24,7 +25,7 @@ const Card = ({ id, imageUrl, title, subtitle, onCardClick, index }) => {
         <div className="card-body">
           <img
             src={imageUrl}
-            alt="some-image"
+            alt={title}
             loading={index > 3 ? "lazy" : "eager"}
             className="card-img"
             id={id}

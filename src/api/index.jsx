@@ -1,5 +1,5 @@
 export const createHeaders = () => {
-  return {
+  return ({
     'Content-Type': 'application/json',
-  }
+  });
 }

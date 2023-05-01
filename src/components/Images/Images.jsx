@@ -7,19 +7,24 @@ import AddCard from "../AddCard/AddCard.jsx";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
-import { selectIsSignedIn } from "../../app/authSlice";
+import { selectIsSignedIn } from "../../state/authSlice";
 import { storageRead, storageSave } from "../../storage/storage.jsx";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys.jsx";
-import { fetchInitialImages } from "../../api/imagesFetch.jsx";
+import {
+  fetchInitialImages,
+  deleteImageFromDb,
+} from "../../api/imagesFetch.jsx";
 
 const Images = () => {
   //state global
+
   const images = useSelector(selectImages);
   const loggedIn = useSelector(selectIsSignedIn);
   const dispatch = useDispatch();
 
   // state local
-  const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // hooks
@@ -29,7 +34,7 @@ const Images = () => {
   const fetchInitialData = () => {
     fetchInitialImages()
       .then((initialData) => {
-        console.log("fetching initial");
+        setLoading(true);
         dispatch(setAllImages(initialData));
         storageSave(STORAGE_KEY_IMAGES, initialData);
         setError(null);
@@ -47,6 +52,7 @@ const Images = () => {
   useEffect(() => {
     if (images.length === 0) return fetchInitialData();
 
+    // fetchInitialData();
     setLoading(false);
     const ImagesStorage = storageRead(STORAGE_KEY_IMAGES);
 
@@ -54,16 +60,19 @@ const Images = () => {
   }, [images.length]);
 
   //events
-  const deleteCard = (cardId) => {
-    // delete from state
-    dispatch(deleteImage(cardId));
+  const deleteCard = async (cardId) => {
+
+    await deleteImageFromDb(cardId);
 
     //update storage
     const newimages = images.filter((img) => img.id !== cardId);
     storageSave(STORAGE_KEY_IMAGES, newimages);
+    // delete from state
+
+    return dispatch(deleteImage(cardId));
   };
 
-  const onCardClick = (e) => {
+  const onCardClick = async (e) => {
     const card = e.target.closest("section");
     const btn = e.target.closest("button");
 
@@ -74,10 +83,16 @@ const Images = () => {
     // if btn clicked - remove card
     if (btn && btn.id === "card-close-btn") {
       console.log("deleting card with id", cardId);
-      const cardTitle = document.querySelector(`#${card.id} h3`);
+      const cardIdArray = card.id.split(".");
+      const cardIduuid = cardIdArray[0];
+      const fileExtension = cardIdArray.slice(-1);
+      const cardTitle = document.querySelector(
+        `#${cardIduuid}\\.${fileExtension} h3`
+      );
+      console.log(cardTitle);
 
       const msg = confirm(`Vil du slette ${cardTitle.textContent}?`);
-      return msg === true ? deleteCard(cardId) : null;
+      return msg === true ? await deleteCard(cardId) : null;
     }
 
     // otherwise go to the card page
@@ -85,56 +100,59 @@ const Images = () => {
   };
 
   return (
-    <>
-      <Container>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div id="Images" className="Images">
-                {loading && <div>A moment please...</div>}
-                {error && (
-                  <div>{`There is a problem fetching the post data - ${error}`}</div>
-                )}
-                <section className="Images-grid">
-                  {images &&
-                    images.map(({ id, imageUrl, title, subtitle }, i) => (
-                      <Card
-                        key={`Card-${i}`}
-                        imageUrl={imageUrl}
-                        title={title}
-                        id={id}
-                        subtitle={subtitle}
-                        onCardClick={onCardClick}
-                        index={i}
-                      />
-                    ))}
-                  {loggedIn === true && <AddCard />}
-                </section>
-              </div>
-            }
-          />
-
-          {images &&
-            images.map(({ id, imageUrl, title, subtitle, text }, i) => (
-              <Route
-                key={`Route-CardPage-${i}`}
-                path={`${id}`}
-                element={
-                  <CardPage
-                    key={`CardPage-${id}`}
-                    imageUrl={imageUrl}
-                    title={title}
-                    id={id}
-                    subtitle={subtitle}
-                    text={text}
+    <Container>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div key={4327923107} id="Images" className="Images">
+              {loading && <div>A moment please...</div>}
+              {error && (
+                <div>{`There is a problem fetching the post data - ${error}`}</div>
+              )}
+              <section className="Images-grid">
+                {images &&
+                  images.map(({ id, imageUrl, title, subtitle }, i) => (
+                    <Card
+                      key={id}
+                      imageUrl={imageUrl}
+                      title={title}
+                      id={id}
+                      subtitle={subtitle}
+                      onCardClick={onCardClick}
+                      index={i}
+                    />
+                  ))}
+                {loggedIn === true && (
+                  <AddCard
+                    key={Math.floor(Math.random() * 1000)}
+                    // onAddCard={handleAddCard}
                   />
-                }
-              />
-            ))}
-        </Routes>
-      </Container>
-    </>
+                )}
+              </section>
+            </div>
+          }
+        />
+
+        {images &&
+          images.map(({ id, imageUrl, title, subtitle, text }, i) => (
+            <Route
+              key={`Route-CardPage-${i}`}
+              path={`${id}`}
+              element={
+                <CardPage
+                  key={`CardPage-${id}`}
+                  imageUrl={imageUrl}
+                  title={title}
+                  id={id}
+                  subtitle={subtitle}
+                  text={text}
+                />
+              }
+            />
+          ))}
+      </Routes>
+    </Container>
   );
 };
 

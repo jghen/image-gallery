@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { addImage, selectImages } from "../Images/imagesSlice.jsx";
 import { storageSave } from "../../storage/storage";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
+import { submitUploadToDb, fetchInitialImages } from "../../api/imagesFetch";
+import { useNavigate } from "react-router-dom";
 
 const AddModal = ({ isOpen, handleClose }) => {
   const imagesData = useSelector(selectImages);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(isOpen);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -33,40 +36,7 @@ const AddModal = ({ isOpen, handleClose }) => {
     return dispatch(addImage(newImageData));
   };
 
-  //add to database
-  const submitUploadToDb = async (data) => {
-    const { id, image, title, subtitle, text } = data;
-    const formData = new FormData();
-    formData.append("image", image);
-    formData.append("title", title);
-    formData.append("subtitle", subtitle);
-    formData.append("text", text);
-
-    const url = `http://localhost:3000/images/${id}`;
-    const options = {
-      method: "POST",
-      credentials: 'include',
-      // headers: {
-      //   "Content-Type": "multipart/form-data",
-      //  },
-      body: formData
-    };
-
-    let s3URL;
-    try {
-      const response = await fetch(url, options);
-      s3URL = await response.json();
-    } catch (error) {
-      console.log(error);
-    }
-
-    //can display s3UrL in the front End. Returned img url from server.
-    console.log('s3url',s3URL )
-
-    return s3URL ? s3URL : false;
-  };
-
-  const handleModalClick = (e) => {
+  const handleModalClick = async (e) => {
     const closeBtn = e.target.closest("button");
     if (closeBtn && closeBtn.id === "modal-close-btn") {
       return setOpen(false);
@@ -80,27 +50,45 @@ const AddModal = ({ isOpen, handleClose }) => {
       const title = document.querySelector("#add-title").value;
       const sub = document.querySelector("#add-subtitle").value;
       const text = document.querySelector("#add-text").value;
-      const makeId = uuidv4();
+      // const makeId = uuidv4();
+      const makeId = Date.now();
+      console.log("this is img now", img);
+      const ext = img.type.split("/").slice(-1);
 
       const data = {
-        id: makeId,
+        id: `${makeId}.${ext}`,
         image: img,
         title: title,
         subtitle: sub,
         text: text,
       };
       const clientData = {
-        id: makeId,
+        id: `${makeId}.${ext}`,
         imageUrl: URL.createObjectURL(img),
         title: title,
         subtitle: sub,
         text: text,
       };
+      console.log("clientData.id", clientData.id);
 
-      submitUploadToDb(data);
-      addNewCard(clientData);
+      //trigger parent should refresh
+      
+      try {
+        setLoading(true);
+        const upload = await submitUploadToDb(data);
+        console.log(upload);
+      } catch (error) {
+        console.log(error.message);
+        alert(error.message);
+      } finally {
+        addNewCard(clientData);
+        setLoading(false)
+        
+        
+      }
     }
-    return;
+
+    return ;
   };
 
   return (
@@ -108,6 +96,22 @@ const AddModal = ({ isOpen, handleClose }) => {
       <button id="modal-close-btn" className="btn close-btn">
         <span>+</span>
       </button>
+      {loading && <div
+          style={{
+            position: "absolute",
+            zIndex: "250",
+            top: "1.5rem",
+            left: 0,
+            right: 0,
+            margin: "0 auto",
+            height: "102px",
+            width: "252px",
+            overflow: "hidden",
+            background: "#000",
+            // opacity: .5,
+            borderRadius: ".25rem",
+          }}
+        ></div>}
       {selectedImage && (
         <div
           style={{

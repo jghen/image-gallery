@@ -4,10 +4,13 @@ import AddModal from "../AddModal/AddModal.jsx";
 import { useState } from "react";
 import "material-symbols";
 
-const AddCard = () => {
+const AddCard = ({ setShouldRefresh }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAddCardClick = () => {
+    // onAddCard();
+    // set shouldRefresh to true to trigger a refresh
+    // setShouldRefresh(true);
     return setModalOpen(true);
   };
 
@@ -23,7 +26,7 @@ const AddCard = () => {
           <p>Legg til nytt innhold</p>
         </div>
       </Container>
-      {modalOpen && <AddModal isOpen={modalOpen} handleClose={handleClose}/>}
+      {modalOpen && <AddModal setShouldRefresh={setShouldRefresh} isOpen={modalOpen} handleClose={handleClose}/>}
     </section>
   );
 };
