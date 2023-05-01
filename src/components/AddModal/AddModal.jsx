@@ -6,14 +6,12 @@ import { storageSave } from "../../storage/storage";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys";
 import { v4 as uuidv4 } from "uuid";
 import { submitUploadToDb, fetchInitialImages } from "../../api/imagesFetch";
-import { useNavigate } from "react-router-dom";
+import { isUploading, isNotUploading } from "../../state/loaderSlice";
 
 const AddModal = ({ isOpen, handleClose }) => {
   const imagesData = useSelector(selectImages);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(isOpen);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -46,25 +44,28 @@ const AddModal = ({ isOpen, handleClose }) => {
       // close modal
       setOpen(false);
       //submit data
-      const img = selectedImage; //this is the file object
+      const imgObject = selectedImage; //this is the file object
       const title = document.querySelector("#add-title").value;
       const sub = document.querySelector("#add-subtitle").value;
       const text = document.querySelector("#add-text").value;
       // const makeId = uuidv4();
       const makeId = Date.now();
-      console.log("this is img now", img);
-      const ext = img.type.split("/").slice(-1);
+      console.log("this is img now", imgObject);
+      const ext = imgObject.type.split("/").slice(-1);
+
+      const imgToDisplay = URL.createObjectURL(imgObject);
+      console.log('img to display',imgToDisplay)
 
       const data = {
         id: `${makeId}.${ext}`,
-        image: img,
+        image: imgObject,
         title: title,
         subtitle: sub,
         text: text,
       };
       const clientData = {
         id: `${makeId}.${ext}`,
-        imageUrl: URL.createObjectURL(img),
+        imageUrl: imgToDisplay,
         title: title,
         subtitle: sub,
         text: text,
@@ -74,7 +75,7 @@ const AddModal = ({ isOpen, handleClose }) => {
       //trigger parent should refresh
       
       try {
-        setLoading(true);
+        dispatch(isUploading());
         const upload = await submitUploadToDb(data);
         console.log(upload);
       } catch (error) {
@@ -82,7 +83,7 @@ const AddModal = ({ isOpen, handleClose }) => {
         alert(error.message);
       } finally {
         addNewCard(clientData);
-        setLoading(false)
+        dispatch(isNotUploading());
         
         
       }
@@ -96,22 +97,6 @@ const AddModal = ({ isOpen, handleClose }) => {
       <button id="modal-close-btn" className="btn close-btn">
         <span>+</span>
       </button>
-      {loading && <div
-          style={{
-            position: "absolute",
-            zIndex: "250",
-            top: "1.5rem",
-            left: 0,
-            right: 0,
-            margin: "0 auto",
-            height: "102px",
-            width: "252px",
-            overflow: "hidden",
-            background: "#000",
-            // opacity: .5,
-            borderRadius: ".25rem",
-          }}
-        ></div>}
       {selectedImage && (
         <div
           style={{
