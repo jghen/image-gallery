@@ -34,7 +34,7 @@
 
 .nav-h1,
 .nav-ul {
-  margin: auto calc(var(--standard-margin) * 2);
+  margin: auto calc(var(--standard-margin) * 1);
 }
 
 .nav-ul {
@@ -43,10 +43,12 @@
   align-items: center;
   list-style-type: none;
   padding: 0;
-  margin-bottom: calc(var(--standard-margin) * 1.5);
+  /* margin-bottom: calc(var(--standard-margin) * 1.5); */
+  min-width: 346px;
 }
 .nav-li {
-  margin: auto calc(var(--standard-margin) / 2);
+  text-align: center;
+  margin: auto calc(var(--standard-margin) / 1.5);
 }
 
 @media screen and (min-width: 44em) {

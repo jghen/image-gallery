@@ -2,9 +2,6 @@
   position: relative;
   bottom: 0;
   right: 0;
-  margin-top: 1em;
-  height: calc(var(--standard-margin) * 5);
-  /* width: 100%; */
   display: flex;
   justify-content: center;
   align-items:flex-end;
@@ -12,7 +9,7 @@
 }
 
 .Footer p {
-  margin: var(--standard-margin);
+  margin: 0;
   /* color: var(--text-color-dark); */
 }
 
@@ -20,9 +17,7 @@
   text-decoration: none;
   color:var(--cta-color);
 }
-.Footer a {
-  padding: calc(var(--standard-margin) / 2);
-}
+
 .Footer a:hover {
   text-decoration: underline;
 }

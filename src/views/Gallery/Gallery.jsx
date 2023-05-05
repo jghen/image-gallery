@@ -26,6 +26,7 @@ const Gallery = () => {
         <Route path="/Images/*" element={<Images />} />
         <Route path="/Textiles" element={<Textiles />} />
         <Route path="/Other" element={<Other />} />
+
       </Routes>
     </section>
     </ContentMarginTop>

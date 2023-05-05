@@ -4,7 +4,7 @@
 
 .Images-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   place-items: center;
   gap: calc(var(--standard-margin) * 2);
   margin: var(--standard-margin) auto;

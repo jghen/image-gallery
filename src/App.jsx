@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Home from "./views/Home/Home.jsx";
-import Blog from './views/Blog/Blog.jsx';
+import About from './views/About/About.jsx';
 import Gallery from "./views/Gallery/Gallery.jsx";
 import Contact from "./views/Contact/Contact.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
@@ -19,7 +19,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Blog" element={<Blog />} />
+        <Route path="/About" element={<About />} />
         <Route path="/Gallery/*" element={<Gallery />}/>
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />

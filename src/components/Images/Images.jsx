@@ -1,6 +1,5 @@
 import "./Images.css";
 import { useState, useEffect } from "react";
-import Container from "../../hoc/Container.jsx";
 import Card from "../Card/Card.jsx";
 import CardPage from "../CardPage/CardPage.jsx";
 import AddCard from "../AddCard/AddCard.jsx";
@@ -10,10 +9,7 @@ import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
 import { selectIsSignedIn } from "../../state/authSlice";
 import { storageRead, storageSave } from "../../storage/storage.jsx";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys.jsx";
-import {
-  fetchInitialImages,
-  deleteImageFromDb,
-} from "../../api/imagesFetch.jsx";
+import { fetchInitialImages, deleteImageFromDb, } from "../../api/imagesFetch.jsx";
 
 const Images = () => {
   //state global
@@ -100,7 +96,7 @@ const Images = () => {
   };
 
   return (
-    <Container>
+
       <Routes>
         <Route
           path="/"
@@ -152,7 +148,7 @@ const Images = () => {
             />
           ))}
       </Routes>
-    </Container>
+
   );
 };
 

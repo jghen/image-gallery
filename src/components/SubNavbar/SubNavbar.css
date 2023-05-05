@@ -52,8 +52,7 @@
     top:  calc(var(--standard-margin) * 5);
     max-width: calc(var(--max-width) - var(--standard-margin) * 2 + 5px);
     border-radius: calc(var(--border-radius) / 4);
-    /* border-top: 1px solid var(--cta-color); */
-    background-color: rgb(245, 245, 245);
+
   }
   .SubNavbar-ul {
     width: calc(var(--max-width)  / 1);

@@ -4,15 +4,15 @@
   min-height: 350px;
   border-radius: var(--border-radius);
   color: var(--text-color-dark);
-  box-shadow: 1px 1px 4px -2px grey;
+  box-shadow: var(--standard-box-shadow);
 }
 
 
 .AddCard-pluss {
-  width: 248px;
-  height: 160px;
+  width: 250px;
+  height: 165px;
   font-size: 5rem;
-  margin: 1px 1px var(--standard-margin) 1px;
+  margin: 0px 1px var(--standard-margin) 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
   color: rgba(128, 128, 128, 0.304);
   border-top-left-radius: calc(var(--border-radius) / 2);
   border-top-right-radius: calc(var(--border-radius) / 2);
-  border: 2px dotted rgba(128, 128, 128, 0.404);
+  border: 1px dotted rgba(128, 128, 128, 0.4);
 }
 
 .AddCard:hover {

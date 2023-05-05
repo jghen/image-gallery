@@ -2,9 +2,10 @@
   position: relative;
   width: 250px;
   min-height: 350px;
+  
   border-radius: var(--border-radius);
   color: var(--text-color-dark);
-  box-shadow: 1px 1px 4px -2px grey;
+  box-shadow: var(--standard-box-shadow);
   cursor: pointer;
 }
 .card button {
@@ -40,19 +41,19 @@
 }
 
 .card-img {
-  height: 166px;
   width: 250px;
+  height: 166px;
+  
+  object-fit: cover;
   border-top-left-radius: calc(var(--border-radius) / 2);
   border-top-right-radius: calc(var(--border-radius) / 2);
   margin: 0 0 var(--standard-margin) 0;
 }
 
-.card h3 {
+.card h3, .card p {
   width: 100%;
-  margin-bottom: 0;
-  /* text-align: left; */
+  margin: calc(var(--standard-margin) * 0.5);
 }
-
 .card p {
-  width: 100%;
+  margin: 0;
 }

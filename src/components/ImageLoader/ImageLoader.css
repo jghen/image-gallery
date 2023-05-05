@@ -1,0 +1,32 @@
+.ImageLoader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ImageLoader1, .ImageLoader2, .ImageLoader3 {
+  min-height: 1rem;
+  min-width: 1rem;
+  margin: .2rem;
+  border-radius: 50%;
+  background-color: var(--cta-color);
+  opacity: 0;
+  animation: 600ms ease-in-out alternate infinite loading;
+}
+
+.ImageLoader1 {
+animation-delay: 0;
+}
+.ImageLoader2 {
+  animation-delay: 75ms;
+}
+.ImageLoader3 {
+  animation-delay: 150ms;
+}
+
+@keyframes loading {
+  from {opacity: 0;}
+  to {opacity: .8;}
+}
+
+

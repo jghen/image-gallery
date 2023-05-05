@@ -31,10 +31,10 @@ const Navbar = () => {
         </li>
         <li className="nav-li">
           <NavLink
-            to={"/Blog"}
+            to={"/About"}
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Blogg
+            Om meg
           </NavLink>
         </li>
         <li className="nav-li">
