@@ -9,7 +9,10 @@ import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
 import { selectIsSignedIn } from "../../state/authSlice";
 import { storageRead, storageSave } from "../../storage/storage.jsx";
 import { STORAGE_KEY_IMAGES } from "../../const/storageKeys.jsx";
-import { fetchInitialImages, deleteImageFromDb, } from "../../api/imagesFetch.jsx";
+import {
+  fetchInitialImages,
+  deleteImageFromDb,
+} from "../../api/imagesFetch.jsx";
 
 const Images = () => {
   //state global
@@ -19,8 +22,7 @@ const Images = () => {
   const dispatch = useDispatch();
 
   // state local
-  const [refresh, setRefresh] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // hooks
@@ -28,12 +30,13 @@ const Images = () => {
 
   // side effects
   const fetchInitialData = () => {
+    setLoading(true)
     fetchInitialImages()
       .then((initialData) => {
-        setLoading(true);
         dispatch(setAllImages(initialData));
         storageSave(STORAGE_KEY_IMAGES, initialData);
         setError(null);
+        setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
@@ -43,21 +46,17 @@ const Images = () => {
       .finally(() => {
         setLoading(false);
       });
+
   };
 
   useEffect(() => {
-    if (images.length === 0) return fetchInitialData();
-
-    // fetchInitialData();
-    setLoading(false);
-    const ImagesStorage = storageRead(STORAGE_KEY_IMAGES);
-
-    console.log("state and storage", images.length, ImagesStorage.length);
+    if(images.length==0) fetchInitialData();
+    setLoading(false)
+    
   }, [images.length]);
 
   //events
   const deleteCard = async (cardId) => {
-
     await deleteImageFromDb(cardId);
 
     //update storage
@@ -95,60 +94,60 @@ const Images = () => {
     return navigate(`/Gallery/Images/${cardId}`);
   };
 
+  console.log('----loading',loading)
+
   return (
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div key={4327923107} id="Images" className="Images">
-              {loading && <div>A moment please...</div>}
-              {error && (
-                <div>{`There is a problem fetching the post data - ${error}`}</div>
-              )}
-              <section className="Images-grid">
-                {images &&
-                  images.map(({ id, imageUrl, title, subtitle }, i) => (
-                    <Card
-                      key={id}
-                      imageUrl={imageUrl}
-                      title={title}
-                      id={id}
-                      subtitle={subtitle}
-                      onCardClick={onCardClick}
-                      index={i}
-                    />
-                  ))}
-                {loggedIn === true && (
-                  <AddCard
-                    key={Math.floor(Math.random() * 1000)}
-                    // onAddCard={handleAddCard}
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div key={4327923107} id="Images" className="Images">
+            
+            {error && (
+              <div>{`There is a problem fetching the post data - ${error}`}</div>
+            )}
+            <section className="Images-grid">
+            {loading ? <div>A moment please...</div> : images.map(({ id, imageUrl, title, subtitle }, i) => (
+                  <Card
+                    key={id}
+                    imageUrl={imageUrl}
+                    title={title}
+                    id={id}
+                    subtitle={subtitle}
+                    onCardClick={onCardClick}
+                    index={i}
                   />
-                )}
-              </section>
-            </div>
-          }
-        />
+                ))}
 
-        {images &&
-          images.map(({ id, imageUrl, title, subtitle, text }, i) => (
-            <Route
-              key={`Route-CardPage-${i}`}
-              path={`${id}`}
-              element={
-                <CardPage
-                  key={`CardPage-${id}`}
-                  imageUrl={imageUrl}
-                  title={title}
-                  id={id}
-                  subtitle={subtitle}
-                  text={text}
+              {loggedIn === true && (
+                <AddCard
+                  key={Math.floor(Math.random() * 1000)}
+                  // onAddCard={handleAddCard}
                 />
-              }
-            />
-          ))}
-      </Routes>
+              )}
+            </section>
+          </div>
+        }
+      />
 
+      {images &&
+        images.map(({ id, imageUrl, title, subtitle, text }, i) => (
+          <Route
+            key={`Route-CardPage-${i}`}
+            path={`${id}`}
+            element={
+              <CardPage
+                key={`CardPage-${id}`}
+                imageUrl={imageUrl}
+                title={title}
+                id={id}
+                subtitle={subtitle}
+                text={text}
+              />
+            }
+          />
+        ))}
+    </Routes>
   );
 };
 

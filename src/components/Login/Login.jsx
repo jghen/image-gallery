@@ -43,8 +43,10 @@ const Login = () => {
     //set state: signed in.
     dispatch(login());
     //go back to prev page.
-    return navigate(-1, { replace: true });
+    return navigate('/');
   };
+
+  const goHome = () => navigate('/');
 
   return (
     <>
@@ -65,7 +67,7 @@ const Login = () => {
       : (
         <section className="Login">
             <p>Du er allerede logget inn :)</p>
-            <button className="btn cta-btn" onClick={()=>navigate(-1)}>
+            <button className="btn cta-btn" onClick={goHome}>
               Tilbake
             </button>
           </section>

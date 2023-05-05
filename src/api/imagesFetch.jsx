@@ -89,7 +89,7 @@ export const deleteImageFromDb = async (key) => {
     }
     const result = await response.json();
     console.log(result);
-    return await result;
+    return Promise.allSettled(result);
   } catch (error) {
     console.log(error);
     return error.message;
