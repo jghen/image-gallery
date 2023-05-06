@@ -2,7 +2,7 @@ import BackButton from "../BackButton/BackButton";
 import "./CardPage.css";
 import { useEffect } from "react";
 
-const CardPage = ({ id, imageUrl, title, subtitle, text }) => {
+const CardPage = ({ id, blurHash, imageUrl, title, subtitle, text }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -72,17 +72,17 @@ const AddModal = ({ isOpen, handleClose }) => {
       };
       console.log("clientData.id", clientData.id);
 
-      //trigger parent should refresh
-      
+      let blurHash;
       try {
         dispatch(isUploading());
         const upload = await submitUploadToDb(data);
+        blurHash = upload.data.result.db_image.name; //get hash in response
         console.log(upload);
       } catch (error) {
         console.log(error.message);
         alert(error.message);
       } finally {
-        addNewCard(clientData);
+        addNewCard({...clientData, blurHash:blurHash});
         dispatch(isNotUploading());
         
         
@@ -101,7 +101,7 @@ const AddModal = ({ isOpen, handleClose }) => {
         <div
           style={{
             position: "absolute",
-            top: "1.5rem",
+            top: ".5rem",
             left: 0,
             right: 0,
             margin: "0 auto",

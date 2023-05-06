@@ -25,6 +25,7 @@ export const fetchInitialImages = async () => {
         if (!img) return null;
         return {
           id: img.id,
+          blurHash: img.name,
           imageUrl: decodeURI(result.data.result.encodedUrls[i]),
           title: img.title,
           subtitle: img.subtitle,
@@ -89,7 +90,7 @@ export const deleteImageFromDb = async (key) => {
     }
     const result = await response.json();
     console.log(result);
-    return Promise.allSettled(result);
+    return result;
   } catch (error) {
     console.log(error);
     return error.message;

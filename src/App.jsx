@@ -18,12 +18,12 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+      <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/Gallery/*" element={<Gallery />}/>
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

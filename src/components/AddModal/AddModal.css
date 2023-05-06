@@ -3,12 +3,11 @@
   opacity: 1;
   position: fixed;
   z-index: 100;
-  top: calc(var(--standard-margin) * 8);
+  top: 0;
   left: 0;
   right: 0;
+  height: 100%;
   margin: 0 auto;
-  min-height: 300px;
-  max-height: 650px;
   max-width: 650px;
   background-color: var(--primary-color);
   border-radius: calc(var(--border-radius) / 2);
@@ -21,12 +20,20 @@
   justify-content: center;
   align-content: center;
   align-items: center;
+  overflow-y: scroll;
+}
+.add-modal label {
+  margin-top: calc(var(--standard-margin) * .5);
+}
+
+.add-modal label:first-of-type {
+  margin-top: calc(var(--standard-margin) * 1);
 }
 
 .AddCard-input-img {
   border-top-left-radius: calc(var(--border-radius) / 2);
   border-top-right-radius: calc(var(--border-radius) / 2);
-  margin: 0 auto;
+  /* margin: 0 auto; */
   justify-self: center;
 }
 
@@ -37,15 +44,15 @@
   display: none;
 }
 
-.file-upload-label, .add-title, .add-text {
+.file-upload-label, .add-title, .add-text, .add-subtitle {
   width: 250px;
-  margin: calc(var(--standard-margin) / 2) auto var(--standard-margin) auto;
+  /* margin: calc(var(--standard-margin) / 2) auto; */
   border-radius: calc(var(--border-radius) / 2);
   border: 1px solid var(--text-color-dark);
 }
-.add-title {
+/* .add-title {
   height: 30px;
-}
+} */
 
 .file-upload-label {
   height: 100px;
@@ -57,7 +64,11 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  margin: calc(var(--standard-margin) * 1.5) auto var(--standard-margin) auto;
+  /* margin: var(--standard-margin) auto; */
+}
+
+.add-modal img {
+  margin: 0;
 }
 
 .add-modal .close-btn {

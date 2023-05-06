@@ -51,7 +51,7 @@ const Images = () => {
 
   useEffect(() => {
     if(images.length==0) fetchInitialData();
-    setLoading(false)
+    setLoading(false);
     
   }, [images.length]);
 
@@ -107,7 +107,7 @@ const Images = () => {
               <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
             <section className="Images-grid">
-            {loading ? <div>A moment please...</div> : images.map(({ id, imageUrl, title, subtitle }, i) => (
+            {loading ? <div>A moment please...</div> : images.map(({ id, blurHash, imageUrl, title, subtitle }, i) => (
                   <Card
                     key={id}
                     imageUrl={imageUrl}
@@ -116,6 +116,7 @@ const Images = () => {
                     subtitle={subtitle}
                     onCardClick={onCardClick}
                     index={i}
+                    blurHash={blurHash}
                   />
                 ))}
 
@@ -131,7 +132,7 @@ const Images = () => {
       />
 
       {images &&
-        images.map(({ id, imageUrl, title, subtitle, text }, i) => (
+        images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
           <Route
             key={`Route-CardPage-${i}`}
             path={`${id}`}
@@ -143,6 +144,7 @@ const Images = () => {
                 id={id}
                 subtitle={subtitle}
                 text={text}
+                blurHash={blurHash}
               />
             }
           />
