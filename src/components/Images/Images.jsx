@@ -1,9 +1,9 @@
 import "./Images.css";
 import { useState, useEffect } from "react";
 import Card from "../Card/Card.jsx";
-import CardPage from "../CardPage/CardPage.jsx";
 import AddCard from "../AddCard/AddCard.jsx";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import CardPage from "../CardPage/CardPage.jsx";
+import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAllImages, deleteImage, selectImages } from "./imagesSlice.jsx";
 import { selectIsSignedIn } from "../../state/authSlice";
@@ -30,7 +30,7 @@ const Images = () => {
 
   // side effects
   const fetchInitialData = () => {
-    setLoading(true)
+    setLoading(true);
     fetchInitialImages()
       .then((initialData) => {
         dispatch(setAllImages(initialData));
@@ -46,13 +46,11 @@ const Images = () => {
       .finally(() => {
         setLoading(false);
       });
-
   };
 
   useEffect(() => {
-    if(images.length==0) fetchInitialData();
+    if (images.length == 0) fetchInitialData();
     setLoading(false);
-    
   }, [images.length]);
 
   //events
@@ -94,62 +92,43 @@ const Images = () => {
     return navigate(`/Gallery/Images/${cardId}`);
   };
 
-  console.log('----loading',loading)
+  //components
+  const AllImages = ({images}) => {
+    return (<div key={4327923107} id="Images" className="Images">
+    {error && (
+      <div>{`There is a problem fetching the post data - ${error}`}</div>
+    )}
+    <section className="Images-grid">
+      {loading ? (
+        <div>A moment please...</div>
+      ) : (
+        images.map(({ id, blurHash, imageUrl, title, subtitle }, i) => (
+          <Card
+            key={id}
+            imageUrl={imageUrl}
+            title={title}
+            id={id}
+            subtitle={subtitle}
+            onCardClick={onCardClick}
+            index={i}
+            blurHash={blurHash}
+          />
+        ))
+      )}
+
+      {loggedIn === true && (
+        <AddCard key={Math.floor(Math.random() * 1000)} />
+      )}
+    </section>
+  </div>)
+  } 
+  console.log("----loading", loading);
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div key={4327923107} id="Images" className="Images">
-            
-            {error && (
-              <div>{`There is a problem fetching the post data - ${error}`}</div>
-            )}
-            <section className="Images-grid">
-            {loading ? <div>A moment please...</div> : images.map(({ id, blurHash, imageUrl, title, subtitle }, i) => (
-                  <Card
-                    key={id}
-                    imageUrl={imageUrl}
-                    title={title}
-                    id={id}
-                    subtitle={subtitle}
-                    onCardClick={onCardClick}
-                    index={i}
-                    blurHash={blurHash}
-                  />
-                ))}
-
-              {loggedIn === true && (
-                <AddCard
-                  key={Math.floor(Math.random() * 1000)}
-                  // onAddCard={handleAddCard}
-                />
-              )}
-            </section>
-          </div>
-        }
-      />
-
-      {images &&
-        images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
-          <Route
-            key={`Route-CardPage-${i}`}
-            path={`${id}`}
-            element={
-              <CardPage
-                key={`CardPage-${id}`}
-                imageUrl={imageUrl}
-                title={title}
-                id={id}
-                subtitle={subtitle}
-                text={text}
-                blurHash={blurHash}
-              />
-            }
-          />
-        ))}
-    </Routes>
+    <>
+    <AllImages images={images}/>
+    <Outlet/>
+        </>
   );
 };
 

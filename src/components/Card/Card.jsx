@@ -4,24 +4,21 @@ import { useSelector } from "react-redux";
 import { selectIsSignedIn } from "../../state/authSlice";
 import { useState } from "react";
 import { Blurhash } from "react-blurhash";
+// import { Link } from "react-router-dom";
 
 const Card = ({ id, blurHash, imageUrl, title, subtitle, onCardClick, index, }) => {
-  console.log('--blurHash',blurHash)
+
   //state
   const loggedIn = useSelector(selectIsSignedIn);
   const [loaded, setLoaded] = useState(false);
 
   //events
-  const handleCardClick = (e) => {
-    onCardClick(e);
-  };
-  console.log("loggedIn", loggedIn);
-
+  const handleCardClick = (e) => onCardClick(e);
   const imageLoaded = (e) => setLoaded(true);
 
   //Custom components
+  const loadedStyles = { display: loaded ? "block" : "none", };
   const SkeletonText = () => <div className="skeleton-text" style={{ display: loaded ? "none" : "block" }} ></div>;
-  // const SkeletonImage = () => <div className="skeleton-img" style={{ display: loaded ? "none" : "block" }} ></div>;
   const BlurredImage = () => {
     return (
       <div className="skeleton-img" style={{ display: loaded ? "none" : "block" }} >
@@ -37,9 +34,8 @@ const Card = ({ id, blurHash, imageUrl, title, subtitle, onCardClick, index, }) 
     );
   };
 
-  const loadedStyles = { display: loaded ? "block" : "none", };
-
   return (
+    // <Link to={id}>
     <section className="card" id={`card-${id}`} onClick={handleCardClick}>
       {loggedIn === true && (
         <button id="card-close-btn" className="btn" style={{ display: loaded ? "flex" : "none" }} >
@@ -71,6 +67,7 @@ const Card = ({ id, blurHash, imageUrl, title, subtitle, onCardClick, index, }) 
         </div>
       </Container>
     </section>
+    // </Link>
   );
 };
 
