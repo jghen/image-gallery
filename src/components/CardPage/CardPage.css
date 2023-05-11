@@ -2,7 +2,7 @@
   max-width: var(--max-width);
   border-radius: var(--border-radius);
   margin: 0 calc(var(--standard-margin) * .5);
-
+  color: var(--cta-color);
 }
 
 .CardPage-body {

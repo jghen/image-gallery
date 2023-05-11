@@ -2,9 +2,8 @@
   position: relative;
   width: 250px;
   min-height: 350px;
-  
   border-radius: var(--border-radius);
-  color: var(--text-color-dark);
+  color: var(--cta-color);
   box-shadow: var(--standard-box-shadow);
   cursor: pointer;
 }
