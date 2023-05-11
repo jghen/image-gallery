@@ -1,18 +1,18 @@
 import { useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import "./CardPage.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
 import { selectImages } from "../Images/imagesSlice";
 
 const CardPage = (/* { images } */) => {
   let { imageId } = useParams();
-  let images;
-
-  //trying to move images in useffect.
+  // const [img, setImg] = useState([]);
+  const images = useSelector(selectImages);
+  console.log(images)
 
   useEffect(() => {
-    images = useSelector(selectImages);
+    // setImg(images);
     window.scrollTo(0, 0);
   }, []);
 
