@@ -9,4 +9,5 @@ export default configureStore({
     auth: authReducer,
     loader: loaderReducer
   },
+  devTools: process.env.NODE_ENV !== 'production',
 });

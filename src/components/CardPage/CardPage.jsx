@@ -1,18 +1,23 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import "./CardPage.css";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useParams} from "react-router-dom";
-import { selectImages } from "../Images/imagesSlice";
+import { selectImages, setAllImages } from "../Images/imagesSlice";
+import { STORAGE_KEY_IMAGES } from "../../const/storageKeys";
+import { storageRead } from "../../storage/storage";
 
 const CardPage = (/* { images } */) => {
   let { imageId } = useParams();
-  // const [img, setImg] = useState([]);
-  const images = useSelector(selectImages);
+  let images = useSelector(selectImages);
+  const dispatch = useDispatch();
   console.log(images)
 
   useEffect(() => {
-    // setImg(images);
+    if (!images) {
+      images = storageRead(STORAGE_KEY_IMAGES);
+      dispatch(setAllImages);
+    }
     window.scrollTo(0, 0);
   }, []);
 
