@@ -25,6 +25,9 @@
 .CardPage-text {
   width: 98%;
   margin: var(--standard-margin);
+  background-color: var(--sub-nav-color);
+  padding: calc(var(--standard-margin) * .5);
+  border-radius: var(--border-radius);
 }
 
 .CardPage h3, .CardPage p {
