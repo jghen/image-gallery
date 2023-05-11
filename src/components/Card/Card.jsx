@@ -57,7 +57,7 @@ const Card = ({ id, blurHash, imageUrl, title, subtitle, onCardClick, index, }) 
           />
           {loaded ? <h3 id="card-title">{title}</h3> : <SkeletonText />}
           {loaded ? (
-            <p>{subtitle}</p>
+            <p><i>{subtitle}</i></p>
           ) : (
             <>
               <SkeletonText />

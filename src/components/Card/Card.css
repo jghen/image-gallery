@@ -33,6 +33,11 @@
   color:var(--text-color-dark);
 }
 
+.card i {
+  color: gray;
+  font-weight: bold;
+}
+
 .card-body {
   display: flex;
   flex-direction: column;
