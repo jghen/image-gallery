@@ -9,11 +9,18 @@ const CardPage = (/* { images } */) => {
   let { imageId } = useParams();
   const images = useSelector(selectImages);
 
-  const [image] = images.filter((img) => img.id == imageId);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+
+  if(!images) {
+    return <div>kan ikke hente bildet..</div>
+  }
+
+  const [image] = images?.filter((img) => img?.id == imageId);
+
+  console.log(images, imageId, image);
 
   return (
     <>
@@ -34,7 +41,7 @@ const CardPage = (/* { images } */) => {
             </div>
           </div>
         </section>
-      )}
+      ) }
     </>
   );
 };
