@@ -10,7 +10,6 @@ const CardPage = (/* { images } */) => {
   const images = useSelector(selectImages);
 
   const [image] = images.filter((img) => img.id == imageId);
-  const { blurHash, id, imageUrl, title, subtitle, text } = image;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,15 +22,15 @@ const CardPage = (/* { images } */) => {
           <div className="CardPage-body">
             <BackButton />
             <img
-              src={imageUrl}
+              src={image.imageUrl}
               alt={`image-${id}`}
               loading="lazy"
               className="CardPage-img"
             />
             <div className="CardPage-text">
-              <h3>{title}</h3>
-              <p><i>{subtitle}</i></p>
-              <p> {text} </p>
+              <h3>{image.title}</h3>
+              <p><i>{image.subtitle}</i></p>
+              <p> {image.text} </p>
             </div>
           </div>
         </section>

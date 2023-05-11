@@ -102,7 +102,7 @@ const Images = () => {
       {loading ? (
         <div>A moment please...</div>
       ) : (
-        images.map(({ id, blurHash, imageUrl, title, subtitle }, i) => (
+        images && images.map(({ id, blurHash, imageUrl, title, subtitle }, i) => (
           <Card
             key={id}
             imageUrl={imageUrl}
