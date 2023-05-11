@@ -82,7 +82,6 @@ const Images = () => {
       const cardTitle = document.querySelector(
         `#${cardIduuid}\\.${fileExtension} h3`
       );
-      console.log(cardTitle);
 
       const msg = confirm(`Vil du slette ${cardTitle.textContent}?`);
       return msg === true ? await deleteCard(cardId) : null;
@@ -126,7 +125,7 @@ const Images = () => {
   return (
     <>
     <AllImages images={images}/>
-    <Outlet/>
+    {/* <Outlet/> */}
         </>
   );
 };

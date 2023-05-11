@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import "./CardPage.css";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { selectImages } from "../Images/imagesSlice";
 
 const CardPage = (/* { images } */) => {
@@ -25,12 +25,12 @@ const CardPage = (/* { images } */) => {
   return (
     <>
       {image && (
-        <section id={`CardPage-${id}`} className="CardPage">
+        <section id={`CardPage-${image.id}`} className="CardPage">
           <div className="CardPage-body">
             <BackButton />
             <img
               src={image.imageUrl}
-              alt={`image-${id}`}
+              alt={`image-${image.id}`}
               loading="lazy"
               className="CardPage-img"
             />

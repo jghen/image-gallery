@@ -9,18 +9,18 @@ import { useEffect } from "react";
 import ContentMarginTop from "../../hoc/ContentMarginTop";
 
 const Gallery = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(()=>{
-  //   navigate('/Gallery/Images');
-  // }, [])
+  useEffect(() => {
+    navigate("/Gallery/Images");
+  }, []);
 
   return (
     <ContentMarginTop>
       <section className="Gallery">
         <SubNavbar />
         <Routes>
-          <Route path="" index element={<Images />} />
+          <Route index element={<Images />} />
           <Route path="Images" element={<Images />}/>
           <Route path="Images/:imageId" element={<CardPage />} />
           <Route path="Textiles" element={<Textiles />} />
