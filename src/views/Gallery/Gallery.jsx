@@ -9,11 +9,14 @@ import { useEffect } from "react";
 import ContentMarginTop from "../../hoc/ContentMarginTop";
 
 const Gallery = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    navigate("/Gallery/Images");
-  }, []);
+  //it worked when i had this on:
+  // useEffect(() => {
+  //   navigate("/Gallery/Images");
+  // }, []);
+
+  
 
   return (
     <ContentMarginTop>
