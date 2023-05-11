@@ -1,7 +1,7 @@
 .AddCard {
   position: relative;
   width: 250px;
-  min-height: 350px;
+  min-height: 300px;
   border-radius: var(--border-radius);
   color: var(--text-color-dark);
   box-shadow: var(--standard-box-shadow);
