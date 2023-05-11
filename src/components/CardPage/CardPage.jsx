@@ -11,13 +11,11 @@ const CardPage = (/* { images } */) => {
   let { imageId } = useParams();
   let images = useSelector(selectImages);
   const dispatch = useDispatch();
+  images = storageRead(STORAGE_KEY_IMAGES);
   console.log(images)
 
   useEffect(() => {
-    if (!images) {
-      images = storageRead(STORAGE_KEY_IMAGES);
-      dispatch(setAllImages);
-    }
+    
     window.scrollTo(0, 0);
   }, []);
 
