@@ -7,9 +7,12 @@ import { selectImages } from "../Images/imagesSlice";
 
 const CardPage = (/* { images } */) => {
   let { imageId } = useParams();
-  const images = useSelector(selectImages);
+  let images;
+
+  //trying to move images in useffect.
 
   useEffect(() => {
+    images = useSelector(selectImages);
     window.scrollTo(0, 0);
   }, []);
 
