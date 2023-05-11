@@ -9,12 +9,12 @@ import { useEffect } from "react";
 import ContentMarginTop from "../../hoc/ContentMarginTop";
 
 const Gallery = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //it worked when i had this on (and off), but images in cardpage are still undefined?:
-  useEffect(() => {
-    navigate("/Gallery/Images");
-  }, []);
+  // useEffect(() => {
+  //   navigate("/Gallery/Images");
+  // }, []);
 
   
 
