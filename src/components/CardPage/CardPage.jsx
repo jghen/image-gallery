@@ -30,7 +30,7 @@ const CardPage = (/* { images } */) => {
             />
             <div className="CardPage-text">
               <h3>{title}</h3>
-              <p>{subtitle}</p>
+              <p><i>{subtitle}</i></p>
               <p> {text} </p>
             </div>
           </div>

@@ -34,8 +34,9 @@
   margin: .5rem 0;
 }
 
-.CardPage p:first-child {
+.CardPage i {
   color: gray;
+  
 }
 
 @media screen and (min-width: 44em) {
