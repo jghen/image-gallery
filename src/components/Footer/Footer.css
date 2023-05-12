@@ -1,9 +1,14 @@
 .Footer {
-  position: absolute;
-
   /* comment this */
-  width: fit-content;
-  bottom: 10rem;
+  position: relative;
+  top: 1rem;
+
+  /* uncomment this  */
+
+  /* position: absolute; 
+  width: fit-content; 
+  bottom: 0; */
+
   /* to make it dissapear  */
 
   left: 0;
