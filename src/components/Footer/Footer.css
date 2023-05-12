@@ -1,23 +1,14 @@
 .Footer {
-  position: relative;
-  bottom: 0;
+  position: absolute;
+
+  /* comment this */
+  width: fit-content;
+  bottom: 10rem;
+  /* to make it dissapear  */
+
+  left: 0;
   right: 0;
-  display: flex;
-  justify-content: center;
-  align-items:flex-end;
-  /* background-color: red; */
+  margin: 0 auto;
+  
 }
 
-.Footer p {
-  margin: 0;
-  /* color: var(--text-color-dark); */
-}
-
-.Footer a, .Footer a:visited {
-  text-decoration: none;
-  color:var(--cta-color);
-}
-
-.Footer a:hover {
-  text-decoration: underline;
-}

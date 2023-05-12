@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Home from "../Home/Home.jsx";
-import ContentMarginTop from '../../hoc/ContentMarginTop';
+import ContentMarginTop from '../../hoc/ContentMargin.jsx';
 
 const NotFound = () => {
   return (

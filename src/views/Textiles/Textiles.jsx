@@ -1,5 +1,5 @@
 import "./Textiles.css";
-import ContentMarginTop from "../../hoc/ContentMarginTop";
+import ContentMarginTop from "../../hoc/ContentMargin";
 
 const Textiles = () => {
   return (

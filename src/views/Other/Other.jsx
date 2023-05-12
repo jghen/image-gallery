@@ -1,4 +1,4 @@
-import ContentMarginTop from "../../hoc/ContentMarginTop";
+import ContentMarginTop from "../../hoc/ContentMargin";
 import "./Other.css";
 
 const Other = () => {

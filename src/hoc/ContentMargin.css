@@ -1,0 +1,4 @@
+.Content-margin-wrapper {
+  margin: calc(var(--standard-margin) * 5) auto calc(var(--standard-margin) * 5) auto ;
+  max-width: var(--max-width);
+}

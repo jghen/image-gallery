@@ -1,5 +1,5 @@
 import "./Contact.css";
-import ContentMarginTop from '../../hoc/ContentMarginTop';
+import ContentMarginTop from '../../hoc/ContentMargin';
 
 const Contact = () => {
   return (

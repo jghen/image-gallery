@@ -6,7 +6,7 @@ import CardPage from "../../components/CardPage/CardPage";
 import SubNavbar from "../../components/SubNavbar/SubNavbar.jsx";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import ContentMarginTop from "../../hoc/ContentMarginTop";
+import ContentMarginTop from "../../hoc/ContentMargin";
 
 const Gallery = () => {
   // const navigate = useNavigate();

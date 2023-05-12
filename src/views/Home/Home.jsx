@@ -1,5 +1,5 @@
 import "./Home.css";
-import ContentMarginTop from '../../hoc/ContentMarginTop';
+import ContentMarginTop from '../../hoc/ContentMargin';
 
 const Home = () => {
   return (
