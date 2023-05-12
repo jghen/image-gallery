@@ -25,7 +25,7 @@
 .CardPage-text {
   width: 98%;
   margin: var(--standard-margin);
-  background-color: var(--sub-nav-color);
+  background-color: var(--nav-item-hover);
   padding: calc(var(--standard-margin) * .5);
   border-radius: var(--border-radius);
 }
