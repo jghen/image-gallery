@@ -61,10 +61,8 @@
 
 @media screen and (min-width: 44em) {
   .navbar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: calc(var(--standard-margin) * 5);
+    top: 0;
+    bottom: unset;
   }
   
   .nav-h1 {

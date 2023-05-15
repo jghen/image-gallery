@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Blurhash } from "react-blurhash";
 // import { Link } from "react-router-dom";
 
-const Card = ({ id, blurHash, imageUrl, title, subtitle, onCardClick, index, }) => {
+const Card = ({ id, blurHash, imageUrl, title, subtitle, text, onCardClick, index, }) => {
 
   //state
   const loggedIn = useSelector(selectIsSignedIn);
@@ -44,26 +44,19 @@ const Card = ({ id, blurHash, imageUrl, title, subtitle, onCardClick, index, }) 
       )}
       <Container>
         <div className="card-body">
-          {/* <SkeletonImage/> */}
           <BlurredImage/>
           <img
             style={loadedStyles}
             src={imageUrl}
             alt={title}
-            loading={index > 6 ? "lazy" : "eager"}
+            // loading={index > 6 ? "lazy" : "eager"}
             className="card-img"
             id={id}
             onLoad={imageLoaded}
           />
           {loaded ? <h3 id="card-title">{title}</h3> : <SkeletonText />}
-          {loaded ? (
-            <p><i>{subtitle}</i></p>
-          ) : (
-            <>
-              <SkeletonText />
-              <SkeletonText />
-            </>
-          )}
+          {loaded ? <p><i>{subtitle}</i></p> : <SkeletonText />}
+          {loaded ? <p>{text}</p> : <SkeletonText />}
         </div>
       </Container>
     </section>

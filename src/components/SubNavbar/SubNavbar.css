@@ -53,7 +53,8 @@
 
 @media screen and (min-width: 44em) {
   .SubNavbar {
-    max-width: calc(var(--max-width) - var(--standard-margin) * 2 + 5px);
+    bottom: 0;
+    top: unset;
   }
 }
 
