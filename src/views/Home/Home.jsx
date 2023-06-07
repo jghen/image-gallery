@@ -15,8 +15,9 @@ const Home = () => {
       <Container>
         <section className="Home">
           <img className="home-img" src={frog} alt="green frog" />
+          <div className="home-text">
           <h2 className="home-h2">Kunst - og flotte ting</h2>
-          <p className="home-text">
+          <p>
             En samling nydelige verk. Denne siden har en backend for opplasting
             av bilder.{" "}
           </p>
@@ -27,6 +28,8 @@ const Home = () => {
             <span>Se galleri</span>
             <span className="material-symbols-outlined">east</span>
           </button>
+          </div>
+          
         </section>
         <Footer />
       </Container>
