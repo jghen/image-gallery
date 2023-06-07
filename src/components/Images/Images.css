@@ -13,8 +13,8 @@
   background-color: var(--);
 }
 
-@media screen and (min-width: 44em) {
+/* @media screen and (min-width: 44em) {
   .Images {
     margin-top: calc(var(--standard-margin) * 10)
   }
-}
+} */
