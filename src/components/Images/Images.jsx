@@ -53,7 +53,7 @@ const Images = () => {
   useEffect(() => {
     if (images.length == 0) fetchInitialData();
     setLoading(false);
-  }, []);
+  }, [images.length]);
 
   //events
   const deleteCard = async (cardId) => {

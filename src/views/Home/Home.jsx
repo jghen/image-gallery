@@ -25,7 +25,7 @@ const Home = () => {
             onClick={goToImages}
           >
             <span>Se galleri</span>
-            <span class="material-symbols-outlined">east</span>
+            <span className="material-symbols-outlined">east</span>
           </button>
         </section>
         <Footer />
