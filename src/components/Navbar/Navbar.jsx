@@ -24,12 +24,12 @@ const Navbar = () => {
             <span>Galleri</span>{" "}
           </NavLink>
         </li>
-        {/* <li className="nav-li" >
+        <li className="nav-li" >
           <NavLink to={"/About"} style={({ isActive }) => (isActive ? activeStyle : undefined)}>
             <span className="material-symbols-outlined">face</span>{" "}
             <span>Om</span>{" "}
           </NavLink>
-        </li> */}
+        </li>
         {/* <li className="nav-li" >
           <NavLink to={"/Contact"} style={({ isActive }) => (isActive ? activeStyle : undefined)}>
             <span className="material-symbols-outlined">contact_page</span>{" "}
