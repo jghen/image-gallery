@@ -6,31 +6,31 @@ import CardPage from "../../components/CardPage/CardPage";
 import SubNavbar from "../../components/SubNavbar/SubNavbar.jsx";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import ContentMarginTop from "../../hoc/ContentMargin";
+import ContentMargin from "../../hoc/ContentMargin";
 
 const Gallery = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //it worked when i had this on (and off), but images in cardpage are still undefined?:
-  // useEffect(() => {
-  //   navigate("/Gallery/Images");
-  // }, []);
+  // it worked when i had this on (and off), but images in cardpage are still undefined?:
+  useEffect(() => {
+    navigate("/Gallery/Images");
+  }, []);
 
   
 
   return (
-    <ContentMarginTop>
+    <ContentMargin>
       <section className="Gallery">
-        <SubNavbar />
+        {/* <SubNavbar /> */}
         <Routes>
           <Route index element={<Images />} />
           <Route path="Images" element={<Images />}/>
           <Route path="Images/:imageId" element={<CardPage />} />
-          <Route path="Textiles" element={<Textiles />} />
+          {/* <Route path="Textiles" element={<Textiles />} /> */}
           {/* <Route path="Other" element={<Other />} /> */}
         </Routes>
       </section>
-    </ContentMarginTop>
+    </ContentMargin>
   );
 };
 

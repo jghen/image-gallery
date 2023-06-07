@@ -3,6 +3,8 @@ import { API_BASE_URL } from "../../const/urls";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout, selectIsSignedIn } from "../../state/authSlice";
+import { storageSave } from "../../storage/storage";
+import { STORAGE_KEY_USER } from "../../const/storageKeys";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ const Login = () => {
 
     //set state: signed in.
     dispatch(login());
+    storageSave(STORAGE_KEY_USER, username.value);
     //go back to prev page.
     return navigate('/');
   };

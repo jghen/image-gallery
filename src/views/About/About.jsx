@@ -1,13 +1,13 @@
 import "./About.css";
-import ContentMarginTop from '../../hoc/ContentMargin';
+import ContentMargin from '../../hoc/ContentMargin';
 
 const About = () => {
   return (
-    <ContentMarginTop>
+    <ContentMargin>
       <section className="About">
         <h2 className="About-h2 text-center">About</h2>
       </section>
-    </ContentMarginTop>
+    </ContentMargin>
   );
 };
 

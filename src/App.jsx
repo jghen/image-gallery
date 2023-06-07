@@ -7,6 +7,7 @@ import Contact from "./views/Contact/Contact.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import Login from "./components/Login/Login.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />
       </Routes>
-      
+      <Footer/>
     </BrowserRouter>
   );
 }

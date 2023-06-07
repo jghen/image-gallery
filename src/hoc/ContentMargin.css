@@ -1,4 +1,13 @@
+
 .Content-margin-wrapper {
-  margin: calc(var(--standard-margin) * 5) auto calc(var(--standard-margin) * 5) auto ;
+  margin: calc(var(--standard-margin) * 1) auto 0 auto ;
   max-width: var(--max-width);
+}
+
+@media screen and (min-width: 44em) {
+  .Content-margin-wrapper {
+    margin: calc(var(--standard-margin) * 5) auto 0 auto ;
+    max-width: var(--max-width);
+  }
+  
 }

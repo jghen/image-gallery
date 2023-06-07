@@ -97,42 +97,29 @@ const AddModal = ({ isOpen, handleClose }) => {
       <button id="modal-close-btn" className="btn close-btn">
         <span>+</span>
       </button>
+      
+      <label className="file-upload-label">
       {selectedImage && (
-        <div
-          style={{
-            position: "absolute",
-            top: ".5rem",
-            left: 0,
-            right: 0,
-            margin: "0 auto",
-            height: "102px",
-            width: "252px",
-            overflow: "hidden",
-            zIndex: "100",
-            background: "#fff",
-            borderRadius: ".25rem",
-          }}
-        >
-          <img
-            alt="not found"
-            width={"100%"}
-            src={URL.createObjectURL(selectedImage)}
-          />
-          <br />
-          <button
+        <div className="img-wrapper">
+        <button
             style={{
               position: "absolute",
               zIndex: "150",
-              top: "5rem",
-              left: ".1rem",
             }}
             onClick={() => setSelectedImage(null)}
           >
             Remove
           </button>
+          <img
+            className="img"
+            alt="not found"
+            width={"100%"}
+            src={URL.createObjectURL(selectedImage)}
+          />
+          <br />
+          
         </div>
       )}
-      <label className="file-upload-label">
         <span className="material-symbols-outlined">cloud_upload</span>
         <input
           onChange={handleFileUpload}

@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <section className="navbar">
-      <h1 className="nav-h1">Anne Geiger</h1>
+      <h1 className="nav-h1">Bildegalleri</h1>
       <ul className="nav-ul">
         <li className="nav-li" >
           <NavLink to={"/"} style={({ isActive }) => (isActive ? activeStyle : undefined)}>
@@ -24,18 +24,18 @@ const Navbar = () => {
             <span>Galleri</span>{" "}
           </NavLink>
         </li>
-        <li className="nav-li" >
+        {/* <li className="nav-li" >
           <NavLink to={"/About"} style={({ isActive }) => (isActive ? activeStyle : undefined)}>
             <span className="material-symbols-outlined">face</span>{" "}
             <span>Om</span>{" "}
           </NavLink>
-        </li>
-        <li className="nav-li" >
+        </li> */}
+        {/* <li className="nav-li" >
           <NavLink to={"/Contact"} style={({ isActive }) => (isActive ? activeStyle : undefined)}>
             <span className="material-symbols-outlined">contact_page</span>{" "}
             <span>Kontakt</span>{" "}
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </section>
   );

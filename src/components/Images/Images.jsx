@@ -13,6 +13,7 @@ import {
   fetchInitialImages,
   deleteImageFromDb,
 } from "../../api/imagesFetch.jsx";
+import { saveImages } from "../../../utils/saveImages";
 
 const Images = () => {
   //state global
@@ -33,8 +34,9 @@ const Images = () => {
     setLoading(true);
     fetchInitialImages()
       .then((initialData) => {
-        dispatch(setAllImages(initialData));
-        storageSave(STORAGE_KEY_IMAGES, initialData);
+        if(initialData && initialData.length>0) {
+          saveImages(initialData);
+        }
         setError(null);
         setLoading(false);
       })
@@ -51,7 +53,7 @@ const Images = () => {
   useEffect(() => {
     if (images.length == 0) fetchInitialData();
     setLoading(false);
-  }, [images.length]);
+  }, []);
 
   //events
   const deleteCard = async (cardId) => {
@@ -64,6 +66,7 @@ const Images = () => {
 
     return dispatch(deleteImage(cardId));
   };
+
 
   const onCardClick = async (e) => {
     const card = e.target.closest("section");
@@ -101,7 +104,7 @@ const Images = () => {
       {loading ? (
         <div>A moment please...</div>
       ) : (
-        images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
+        images && images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
           <Card
             key={id}
             imageUrl={imageUrl}

@@ -1,0 +1,19 @@
+.Home, .home-img {
+  margin: var(--standard-margin) auto 0 auto;
+  height: fit-content;
+}
+
+.Home .home-cta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: calc(var(--standard-margin) * 8);
+  padding: calc(var(--standard-margin) * .5);
+  border-radius: var(--border-radius);
+  margin-top: calc(var(--standard-margin) *2);
+}
+.home-img, .home-text {
+max-width: clamp(min(100%, 25rem), 300px, max(100%, 35rem));
+border-radius: var(--border-radius);
+}
