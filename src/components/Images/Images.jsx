@@ -34,9 +34,8 @@ const Images = () => {
     setLoading(true);
     fetchInitialImages()
       .then((initialData) => {
-        if(initialData && initialData.length>0) {
-          saveImages(initialData);
-        }
+        dispatch(setAllImages(initialData));
+        storageSave(STORAGE_KEY_IMAGES, initialData);
         setError(null);
         setLoading(false);
       })
@@ -104,7 +103,7 @@ const Images = () => {
       {loading ? (
         <div>A moment please...</div>
       ) : (
-        images && images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
+        images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
           <Card
             key={id}
             imageUrl={imageUrl}
