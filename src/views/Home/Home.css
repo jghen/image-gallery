@@ -1,9 +1,13 @@
 .Home {
   width: fit-content;
   margin: var(--standard-margin) auto;
+  padding-top: calc(var(--standard-margin) * 2);
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.Home, .home-img {
+.Home, .home-img, .home-text {
   margin: var(--standard-margin) auto 0 auto;
   height: fit-content;
 }
@@ -19,12 +23,12 @@
   margin-top: calc(var(--standard-margin) *2);
 }
 .home-img, .home-text {
-max-width: clamp(min(100%, 30rem), 300px, max(100%, 55rem));
+max-width: clamp(min(100%, 40rem), 300px, max(100%, 55rem));
 border-radius: var(--border-radius);
 }
 
 
-@media screen and (min-width: 44em) {
+@media screen and (min-width: 64em) {
   .Home {
     display: flex;
     align-items: flex-start;

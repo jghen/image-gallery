@@ -8,6 +8,12 @@ const Navbar = () => {
     backgroundColor: "var(--nav-item-hover)",
   };
 
+  let activeIconStyle = {
+    textDecoration: "none",
+    borderTop: "2px solid var(--cta-color)",
+    backgroundColor: "var(--nav-item-hover)",
+  };
+
   return (
     <section className="navbar">
       <h1 className="nav-h1">Bildegalleri</h1>
