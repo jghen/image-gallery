@@ -13,6 +13,19 @@
   background-color: var(--);
 }
 
+.Images .loader-wrapper {
+  background: rgba(0, 0, 0, .1);
+  position: absolute;
+  border: none;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+}
+
 /* @media screen and (min-width: 44em) {
   .Images {
     margin-top: calc(var(--standard-margin) * 10)

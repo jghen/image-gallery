@@ -14,6 +14,7 @@ import {
   deleteImageFromDb,
 } from "../../api/imagesFetch.jsx";
 import { saveImages } from "../../../utils/saveImages";
+import Loader from "../Loader/Loader.jsx";
 
 const Images = () => {
   //state global
@@ -66,7 +67,6 @@ const Images = () => {
     return dispatch(deleteImage(cardId));
   };
 
-
   const onCardClick = async (e) => {
     const card = e.target.closest("section");
     const btn = e.target.closest("button");
@@ -94,41 +94,49 @@ const Images = () => {
   };
 
   //components
-  const AllImages = ({images}) => {
-    return (<div key={Math.round() * 12345} id="Images" className="Images">
-    {error && (
-      <div>{`There is a problem fetching the post data - ${error}`}</div>
-    )}
-    <section className="Images-grid">
-      {loading ? (
-        <div>A moment please...</div>
-      ) : (
-        images.map(({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
-          <Card
-            key={id}
-            imageUrl={imageUrl}
-            title={title}
-            id={id}
-            subtitle={subtitle}
-            onCardClick={onCardClick}
-            index={i}
-            blurHash={blurHash}
-          />
-        ))
-      )}
-      {loggedIn === true && (
-        <AddCard key={Math.floor(Math.random() * 1000)} />
-      )}
-    </section>
-  </div>)
-  } 
+  const AllImages = ({ images }) => {
+    return (
+      <div key={Math.round() * 12345} id="Images" className="Images">
+        {error && (
+          <div>{`There is a problem fetching the post data - ${error}`}</div>
+        )}
+        <section className="Images-grid">
+          {images &&
+            images.map(
+              ({ id, blurHash, imageUrl, title, subtitle, text }, i) => (
+                <Card
+                  key={id}
+                  imageUrl={imageUrl}
+                  title={title}
+                  id={id}
+                  subtitle={subtitle}
+                  onCardClick={onCardClick}
+                  index={i}
+                  blurHash={blurHash}
+                />
+              )
+            )}
+
+          {loggedIn === true && (
+            <AddCard key={Math.floor(Math.random() * 1000)} />
+          )}
+        </section>
+      </div>
+    );
+  };
   console.log("----loading", loading);
 
   return (
     <>
-    <AllImages images={images}/>
-    {/* <Outlet/> */}
-        </>
+      {loading ? (
+        <div className="loader-wrapper">
+          <Loader />
+        </div>
+      ) : (
+        <AllImages images={images} />
+      )}
+      {/* <Outlet/> */}
+    </>
   );
 };
 
