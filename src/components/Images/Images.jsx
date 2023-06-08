@@ -126,13 +126,13 @@ const Images = () => {
 
   return (
     <>
-      {/* {loading ? ( */}
+      {loading ? (
         <div className="images-loader-wrapper">
           <ImageLoader />
         </div>
-      {/* ) : (
+      ) : (
         <AllImages images={images} />
-      )} */}
+      )}
       {/* <Outlet/> */}
     </>
   );
