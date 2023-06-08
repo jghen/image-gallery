@@ -24,7 +24,7 @@ const Images = () => {
   const dispatch = useDispatch();
 
   // state local
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
   // hooks
@@ -32,7 +32,7 @@ const Images = () => {
 
   // side effects
   const fetchInitialData = useCallback(async () => {
-    // setLoading(true);
+    setLoading(true);
     let initialData;
     try {
       initialData = await fetchInitialImages();
