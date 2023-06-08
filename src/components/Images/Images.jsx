@@ -31,9 +31,9 @@ const Images = () => {
   const navigate = useNavigate();
 
   // side effects
-  const fetchInitialData = () => {
+  const fetchInitialData = async () => {
     setLoading(true);
-    fetchInitialImages()
+    await fetchInitialImages()
       .then((initialData) => {
         dispatch(setAllImages(initialData));
         storageSave(STORAGE_KEY_IMAGES, initialData);
@@ -45,15 +45,16 @@ const Images = () => {
         dispatch(setAllImages(null));
         storageSave(STORAGE_KEY_IMAGES, null);
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      // .finally(() => {
+      //   setLoading(false);
+      // });
+    setLoading(false)
   };
 
   useEffect(() => {
-    if (images.length == 0) fetchInitialData();
-    setLoading(false);
-  }, [images.length]);
+    fetchInitialData();
+    // setLoading(false);
+  }, []);
 
   //events
   const deleteCard = async (cardId) => {
