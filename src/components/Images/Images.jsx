@@ -1,5 +1,5 @@
 import "./Images.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Card from "../Card/Card.jsx";
 import AddCard from "../AddCard/AddCard.jsx";
 import CardPage from "../CardPage/CardPage.jsx";
@@ -31,30 +31,27 @@ const Images = () => {
   const navigate = useNavigate();
 
   // side effects
-  const fetchInitialData = async () => {
-    setLoading(true);
-    await fetchInitialImages()
-      .then((initialData) => {
-        dispatch(setAllImages(initialData));
-        storageSave(STORAGE_KEY_IMAGES, initialData);
-        setError(null);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        dispatch(setAllImages(null));
-        storageSave(STORAGE_KEY_IMAGES, null);
-      })
-      // .finally(() => {
-      //   setLoading(false);
-      // });
-    setLoading(false)
-  };
+  const fetchInitialData = useCallback(async () => {
+    // setLoading(true);
+    let initialData;
+    try {
+      initialData = await fetchInitialImages();
+    } catch (err) {
+      setError(err.message);
+      dispatch(setAllImages(null));
+      storageSave(STORAGE_KEY_IMAGES, null);
+    }
+    dispatch(setAllImages(initialData));
+    storageSave(STORAGE_KEY_IMAGES, initialData);
+    setError(null);
+    setLoading(false);
+    
+  }, []);
 
   useEffect(() => {
     fetchInitialData();
     // setLoading(false);
-  }, []);
+  }, [fetchInitialData]);
 
   //events
   const deleteCard = async (cardId) => {
