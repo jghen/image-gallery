@@ -49,7 +49,7 @@ const Images = () => {
   }, []);
 
   useEffect(() => {
-    fetchInitialData();
+    if(images.length==0) fetchInitialData();
     // setLoading(false);
   }, [fetchInitialData]);
 
