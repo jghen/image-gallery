@@ -30,6 +30,9 @@
   z-index: 500;
   color: var(--cta-color-hover);
 }
+.loader-wrapper {
+  border-color: transparent;
+}
 
 /* @media screen and (min-width: 44em) {
   .Images {
