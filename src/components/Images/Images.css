@@ -20,7 +20,6 @@
   justify-content: center;
   background: rgba(0, 0, 0, .3);
   position: absolute;
-  border: none;
   height: 100%;
   width: 100%;
   margin: 0 auto;
@@ -30,9 +29,7 @@
   z-index: 500;
   color: var(--cta-color-hover);
 }
-.loader-wrapper {
-  border-color: transparent;
-}
+
 
 /* @media screen and (min-width: 44em) {
   .Images {

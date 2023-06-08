@@ -13,6 +13,12 @@
   opacity: 0;
   animation: 600ms ease-in-out alternate infinite loading;
 }
+.ImageLoader4 {
+  /* background-color: var(--cta-color); */
+  opacity: 0;
+  animation: 600ms ease-in-out alternate infinite loading;
+  animation-delay: 0;
+}
 
 .ImageLoader1 {
 animation-delay: 0;

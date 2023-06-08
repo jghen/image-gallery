@@ -14,7 +14,7 @@ import {
   deleteImageFromDb,
 } from "../../api/imagesFetch.jsx";
 import { saveImages } from "../../../utils/saveImages";
-import Loader from "../Loader/Loader.jsx";
+import ImageLoader from "../ImageLoader/ImageLoader.jsx";
 
 const Images = () => {
   //state global
@@ -126,16 +126,13 @@ const Images = () => {
 
   return (
     <>
-      {loading ? (
+      {/* {loading ? ( */}
         <div className="images-loader-wrapper">
-          <Loader />
-          <p>            
-          Loading...
-          </p> 
+          <ImageLoader />
         </div>
-      ) : (
+      {/* ) : (
         <AllImages images={images} />
-      )}
+      )} */}
       {/* <Outlet/> */}
     </>
   );
