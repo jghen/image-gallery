@@ -4,7 +4,7 @@ import App from "./App";
 import store from "./state/store";
 import { Provider } from "react-redux";
 import "./index.css";
-import 'material-symbols/outlined.css';
+import 'material-symbols';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
