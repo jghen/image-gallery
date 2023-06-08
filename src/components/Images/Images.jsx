@@ -45,7 +45,7 @@ const Images = () => {
     storageSave(STORAGE_KEY_IMAGES, initialData);
     setError(null);
     setLoading(false);
-    
+
   }, []);
 
   useEffect(() => {
@@ -126,13 +126,16 @@ const Images = () => {
 
   return (
     <>
-      {loading ? (
-        <div className="loader-wrapper">
+      {/* {loading ? ( */}
+        <div className="images-loader-wrapper">
           <Loader />
+          <p>            
+          Loading...
+          </p> 
         </div>
-      ) : (
+      {/* ) : (
         <AllImages images={images} />
-      )}
+      )} */}
       {/* <Outlet/> */}
     </>
   );
