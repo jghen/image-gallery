@@ -5,6 +5,7 @@ const Navbar = () => {
   let activeStyle = {
     textDecoration: "none",
     borderTop: "2px solid var(--cta-color)",
+    color: "var(--cta-color)",
     backgroundColor: "var(--nav-item-hover)",
   };
 

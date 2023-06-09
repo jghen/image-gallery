@@ -46,11 +46,11 @@
 }
 .navbar a, .navbar a:visited, .navbar a:active {
   text-decoration: none;
-  color:var(--cta-color);
+  color:var(--text-color-dark);
 }
 .navbar a:hover {
   background-color: var(--nav-item-hover);
-  color:var(--cta-color-hover);
+  /* color:var(--cta-color-hover); */
 }
 
 .nav-h1 {
