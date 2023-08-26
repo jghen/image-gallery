@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.Home, .home-img, .home-text {
+.Home, .home-img, .home-text, .skeleton-home-text {
   margin: var(--standard-margin) auto 0 auto;
   height: fit-content;
 }
@@ -23,7 +23,7 @@
   margin-top: calc(var(--standard-margin) *2);
 }
 .home-img, .home-text, .skeleton-home-img {
-max-width: clamp(min(100%, 40rem), 300px, max(100%, 55rem));
+width: clamp(min(100%, 40rem), 300px, max(100%, 55rem));
 border-radius: var(--border-radius);
 }
 
@@ -36,8 +36,8 @@ border-radius: var(--border-radius);
 .skeleton-home-text{
   width: 100%;
   height: 1rem;
-  margin-top: calc(var(--standard-margin) * 0.25);
-  margin-bottom: 0;
+  /* margin-top: calc(var(--standard-margin) * 0.25);
+  margin-bottom: 0; */
   background-color: hsl(200, 20%, 75%);
   opacity: .7;
   animation: skeleton-loading 1s linear infinite alternate;
