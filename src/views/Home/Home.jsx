@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer";
 import ContentMargin from "../../hoc/ContentMargin";
 import { useNavigate } from "react-router-dom";
 import Container from "../../hoc/Container";
-import { BlurhashCanvas } from "react-blurhash";
+import { Blurhash } from "react-blurhash";
 import { useState } from "react";
 
 const Home = ({image}) => {
@@ -24,7 +24,7 @@ const Home = ({image}) => {
   const BlurredHomeImage = () => {
     return (
       <div className="skeleton-home-img" style={{ display: loaded ? "none" : "block" }} >
-        <BlurhashCanvas
+        <Blurhash
           hash={image.blurHash}
           width="100%"
           height="100%"
