@@ -19,7 +19,7 @@ export const fetchInitialImages = async () => {
 
     const result = await response.json();
 
-    console.log(result);
+    console.log('fetch result',result);
     return result.data.result.imageData
       .map((img, i) => {
         if (!img) return null;

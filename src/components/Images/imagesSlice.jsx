@@ -14,6 +14,7 @@ export const imagesSlice = createSlice({
       console.log('state.value',state.value)
     },
     setAllImages: (state, action) => {
+      console.log('helx', action.payload)
       state.value = action.payload;
     },
   },

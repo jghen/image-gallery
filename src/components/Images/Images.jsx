@@ -90,6 +90,7 @@ const Images = () => {
     // otherwise go to the card page
     return navigate(`/Gallery/Images/${cardId}`);
   };
+  console.log('images in images',images)
 
   //components
   const AllImages = ({ images }) => {
