@@ -21,13 +21,13 @@ const Home = ({image}) => {
   //Custom components
   const loadedStyles = { display: loaded ? "block" : "none", };
   const SkeletonText = () => <div className="skeleton-home-text" style={{ display: loaded ? "none" : "block" }} ></div>;
-  const BlurredHomeImage = () => {
+  const BlurredHomeImage = ({width, height}) => {
     return (
       <div className="skeleton-home-img" style={{ display: loaded ? "none" : "block" }} >
         <Blurhash
           hash={image.blurHash}
-          width={500}
-          height={500}
+          width={width}
+          height={height}
           resolutionX={50}
           resolutionY={50}
           punch={1}
@@ -40,7 +40,7 @@ const Home = ({image}) => {
     <ContentMargin>
       {image && <Container>
         <section className="Home">
-        <BlurredHomeImage/>
+        <BlurredHomeImage width={image.width} height={image.height}/>
           <img
             style={loadedStyles}
             src={image.imageUrl}
