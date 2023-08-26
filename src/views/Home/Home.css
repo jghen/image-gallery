@@ -28,11 +28,13 @@ border-radius: var(--border-radius);
 }
 
 .skeleton-home-img {
+  overflow: hidden;
   width: 100%;
   border-radius: var(--border-radius);
   background-color: hsl(200, 20%, 75%);
   opacity: .7;
   animation: skeleton-loading .5s linear infinite alternate;
+  position: relative;
 }
 
 .skeleton-home-text{
