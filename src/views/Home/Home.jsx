@@ -26,8 +26,10 @@ const Home = ({image}) => {
       <div className="skeleton-home-img" style={{ display: loaded ? "none" : "block" }} >
         <Blurhash
           hash={image.blurHash}
-          resolutionX={50}
-          resolutionY={50}
+          width={'100%'}
+          height={'auto'}
+          resolutionX={40}
+          resolutionY={40}
           punch={1}
         />
       </div>
