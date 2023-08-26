@@ -28,8 +28,8 @@ const Home = ({image}) => {
           hash={image.blurHash}
           width="100%"
           height="100%"
-          // resolutionX={50}
-          // resolutionY={50}
+          resolutionX={50}
+          resolutionY={50}
           punch={1}
         />
       </div>
