@@ -22,12 +22,14 @@
   border-radius: var(--border-radius);
   margin-top: calc(var(--standard-margin) *2);
 }
-.home-img, .home-text, .skeleton-home-img {
+.home-img, .home-text {
 width: clamp(min(100%, 40rem), 300px, max(100%, 55rem));
 border-radius: var(--border-radius);
 }
 
 .skeleton-home-img {
+  width: 100%;
+  border-radius: var(--border-radius);
   background-color: hsl(200, 20%, 75%);
   opacity: .7;
   animation: skeleton-loading .5s linear infinite alternate;
