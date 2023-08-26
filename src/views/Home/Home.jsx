@@ -23,7 +23,10 @@ const Home = ({image}) => {
   const SkeletonText = () => <div className="skeleton-home-text" style={{ display: loaded ? "none" : "block" }} ></div>;
   const BlurredHomeImage = () => {
     return (
-      <div className="skeleton-home-img" style={{ display: loaded ? "none" : "block" }} >
+      <div 
+      className="skeleton-home-img" 
+      // style={{ display: loaded ? "none" : "block" }} 
+      >
         <Blurhash
           hash={image.blurHash}
           width="100%"
