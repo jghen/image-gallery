@@ -28,7 +28,7 @@ border-radius: var(--border-radius);
 
 .skeleton-home-img {
   flex: auto;
-  height: min(50vh, 50vw);
+  height: min(50vh, 54vw);
   width: 100%;
   border-radius: var(--border-radius);
   background-color: hsl(200, 20%, 75%);
@@ -70,7 +70,6 @@ border-radius: var(--border-radius);
   }
   .home-img, .skeleton-home-img {
     max-width: 60%;
-    height: auto;
     margin: var(--standard-margin)
   }
   .home-text {

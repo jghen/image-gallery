@@ -24,14 +24,14 @@ const Home = ({image}) => {
     return(
     <div 
       className="skeleton-home-text" 
-      // style={{ display: loaded ? "none" : "block" }} 
+      style={{ display: loaded ? "none" : "block" }} 
     ></div>);
   };
   const BlurredHomeImage = () => {
     return (
       <div 
       className="skeleton-home-img" 
-      // style={{ display: loaded ? "none" : "block" }} 
+      style={{ display: loaded ? "none" : "block" }} 
       >
         <Blurhash
           hash={image.blurHash}
@@ -50,14 +50,14 @@ const Home = ({image}) => {
       {image && <Container>
         <section className="Home">
         <BlurredHomeImage/>
-          {/* <img
+          <img
             style={loadedStyles}
             src={image.imageUrl}
             alt={image.title}
             className="home-img"
             id={image.id}
             onLoad={imageLoaded}
-          /> */}
+          />
           <div className="home-text">
           {loaded ? <h2 className="home-h2">Kunst - og flotte ting</h2>: <SkeletonText />}
           {loaded ? (
