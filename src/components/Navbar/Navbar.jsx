@@ -11,7 +11,10 @@ const Navbar = () => {
 
   return (
     <section className="navbar">
-      <h1 className="nav-h1">Bildegalleri</h1>
+    <Navlink to={"/"}>
+    <h1 className="nav-h1">Bildegalleri</h1>
+    </Navlink>
+      
       <ul className="nav-ul">
         <li className="nav-li" >
           <NavLink to={"/"} style={({ isActive }) => (isActive ? activeStyle : undefined)}>
