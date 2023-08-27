@@ -54,7 +54,11 @@
 }
 
 .nav-h1 {
-  display: none;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  padding-left: calc(var(--standard-margin) * 1.5);
+  width: 100%;
+  margin: 0;
 }
 
 .navbar .activeLink {
@@ -70,12 +74,7 @@
   }
   
   .nav-h1 {
-    display: block;
-    font-family: "Pacifico", cursive;
-    font-weight: 400;
     padding-left: calc(var(--standard-margin) * 2);
-    width: 100%;
-    margin: 0;
   }
   
 }
