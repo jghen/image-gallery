@@ -21,14 +21,13 @@
   border-radius: var(--border-radius);
   margin-top: calc(var(--standard-margin) *2);
 }
-/* .home-img,  */
+.home-img, 
 .home-text {
 width: clamp(min(100%, 40rem), 300px, max(100%, 55rem));
 border-radius: var(--border-radius);
 }
-.home-img ,
-.skeleton-home-img 
-{
+
+.skeleton-home-img {
   flex: auto;
   height: min(54vh, 54vw);
   width: 100%;
