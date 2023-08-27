@@ -1,15 +1,14 @@
 .Home {
-  width: fit-content;
+  width: 90%;
   margin: var(--standard-margin) auto;
   padding-top: calc(var(--standard-margin) * 2);
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   flex-wrap: wrap;
 }
 
 .Home, .home-img, .home-text, .skeleton-home-text {
   margin: var(--standard-margin) auto 0 auto;
-  height: fit-content;
 }
 
 .Home .home-cta {
@@ -28,7 +27,8 @@ border-radius: var(--border-radius);
 }
 
 .skeleton-home-img {
-  overflow: hidden;
+  flex: auto;
+  height: min(50vh, 50vw);
   width: 100%;
   border-radius: var(--border-radius);
   background-color: hsl(200, 20%, 75%);
@@ -40,8 +40,6 @@ border-radius: var(--border-radius);
 .skeleton-home-text{
   width: 100%;
   height: 1rem;
-  margin-top: calc(var(--standard-margin) * 0.25);
-  margin-bottom: 0;
   background-color: hsl(200, 20%, 75%);
   opacity: .7;
   animation: skeleton-loading 1s linear infinite alternate;
@@ -49,6 +47,7 @@ border-radius: var(--border-radius);
 .skeleton-home-text:last-of-type{
   width: 80%;
   margin-right: auto;
+  margin-left: 0;
 }
 
 @keyframes skeleton-loading {
@@ -69,7 +68,7 @@ border-radius: var(--border-radius);
     padding: calc(var(--standard-margin) * 1) 0;
     gap: calc(var(--standard-margin) * 1);
   }
-  .home-img {
+  .home-img, .skeleton-home-img {
     max-width: 60%;
     height: auto;
     margin: var(--standard-margin)
