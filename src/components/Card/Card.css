@@ -1,7 +1,7 @@
 .card {
   position: relative;
   width: 250px;
-  min-height: 300px;
+  min-height: 250px;
   border-radius: var(--border-radius);
   color: var(--cta-color);
   box-shadow: var(--standard-box-shadow);
