@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.Home, .home-img, .home-text, .skeleton-home-text {
+.Home, .home-img, .home-text, .skeleton-home-text, .skeleton-home-img {
   margin: var(--standard-margin) auto 0 auto;
 }
 
